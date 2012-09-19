@@ -1,1 +1,11 @@
-target/
+*.class    
+/target/
+/.settings/
+.projects
+.classes
+.springbeans
+
+# Package Files #
+*.jar
+*.war
+*.ear
