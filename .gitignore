@@ -1,6 +1,6 @@
 *.class    
 /target/
-/.settings/
+.settings
 .projects
 .classes
 .springbeans
