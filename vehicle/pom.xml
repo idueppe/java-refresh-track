@@ -11,10 +11,10 @@
 
 	<modules>
 		<module>jboss-custom-client</module>
-		<module>vehicle-api</module>
 		<module>vehicle-ejb</module>
 		<module>vehicle-ear</module>
 		<module>vehicle-client</module>
+		<module>vehicle-api</module>
 	</modules>
 
 	<prerequisites>

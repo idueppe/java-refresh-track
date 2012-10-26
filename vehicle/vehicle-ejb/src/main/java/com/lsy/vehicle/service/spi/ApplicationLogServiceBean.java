@@ -27,6 +27,7 @@ public class ApplicationLogServiceBean implements ApplicationLogService {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void log(String message) {
+    	System.out.println("MESSAGE"+message);
         dao.log(new ApplicationLog(message));
     }
 

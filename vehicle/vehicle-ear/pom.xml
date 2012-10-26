@@ -15,10 +15,10 @@
 	<name>Vehicle EAR module</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>de.crowdcode.training</groupId>
-			<artifactId>vehicle-api</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>de.crowdcode.training</groupId> -->
+<!-- 			<artifactId>vehicle-api</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>de.crowdcode.training</groupId>
 			<artifactId>vehicle-ejb</artifactId>
