@@ -65,4 +65,9 @@ public class VehicleServiceBean implements VehicleService {
         return vehicleDao.find(vehicleId);
     }
 
+	@Override
+	public void delete(Vehicle vehicle) {
+		vehicleDao.delete(vehicle);
+	}
+
 }

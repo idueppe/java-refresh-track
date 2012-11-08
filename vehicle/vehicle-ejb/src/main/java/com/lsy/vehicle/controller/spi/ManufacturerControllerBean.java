@@ -1,20 +1,25 @@
 package com.lsy.vehicle.controller.spi;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.converter.ManufacturerConverter;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.dto.ManufacturerDto;
+import com.lsy.vehicle.service.ManufacturerAlreadyExistsException;
 import com.lsy.vehicle.service.ManufacturerService;
 
-@Stateless
-@Local(ManufacturerController.class)
+@Stateless()
+@Remote(ManufacturerController.class)
 public class ManufacturerControllerBean implements ManufacturerController {
+	
+	private static final Logger LOG = Logger.getLogger(ManufacturerControllerBean.class.getName());
     
     @EJB
     private ManufacturerService manufacturerService;
@@ -30,18 +35,24 @@ public class ManufacturerControllerBean implements ManufacturerController {
 
     @Override
     public List<ManufacturerDto> allManufactures() {
-        // TODO Bitte implementiert diese Methode.
-        return null;
+        return manufacturerConverter.convert(manufacturerService.findAll());
     }
 
     @Override
     public void addManufacturer(String manufacturerName) {
-        // TODO Bitte implementiert diese Methode.
+    	try {
+			manufacturerService.addManufacturer(manufacturerName);
+		} catch (ManufacturerAlreadyExistsException e) {
+			LOG.log(Level.SEVERE, "Manufactuer "+manufacturerName+" allready exists.", e);
+		}
     }
 
     @Override
     public void deleteManufacturer(String manufacturerName) {
-        // TODO Bitte implementiert diese Methode.
+    	Manufacturer manufacturer = manufacturerService.byName(manufacturerName);
+    	if (manufacturer != null) {
+    		manufacturerService.delete(manufacturer);
+    	}
     }
 
 }

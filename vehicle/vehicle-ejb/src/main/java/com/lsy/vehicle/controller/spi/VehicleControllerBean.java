@@ -66,7 +66,8 @@ public class VehicleControllerBean implements VehicleController {
 
     @Override
     public void deleteVehicle(VehicleDto vehicle) {
-        // TODO Bitte implementiert diese Methode
+    	Vehicle vehicleEntity = vehicleService.getVehicleById(vehicle.getId());
+    	vehicleService.delete(vehicleEntity);
     }
 
 }

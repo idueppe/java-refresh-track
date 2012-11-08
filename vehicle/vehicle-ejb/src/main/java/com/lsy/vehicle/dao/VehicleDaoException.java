@@ -19,8 +19,4 @@ public class VehicleDaoException extends RuntimeException {
         super(message, cause);
     }
 
-    public VehicleDaoException(String message, Throwable cause, boolean enableSuppression,  boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-
 }

@@ -1,6 +1,7 @@
 package com.lsy.vehicle.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -30,11 +31,10 @@ public class ApplicationLogServiceIT {
     
     @Test
     public void testLogEntries() {
+    	logService.log("JUNIT LOG TEST");
         List<LogEntry> entries = logService.logEntries();
         assertNotNull(entries);
-        for (LogEntry entry : entries) {
-            System.out.println(entry);
-        }
+        assertTrue(entries.size() > 0);
     }
     
 }

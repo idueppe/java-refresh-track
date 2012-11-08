@@ -18,5 +18,7 @@ public interface VehicleService {
 	public Vehicle registerVehicle(Vehicle vehicle);
 
     public Vehicle addVehicleToManufacturer(String string, Vehicle vehicle);
+
+	public void delete(Vehicle vehicle);
     
 }

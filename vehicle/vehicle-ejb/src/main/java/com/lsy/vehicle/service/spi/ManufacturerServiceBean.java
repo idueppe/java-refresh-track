@@ -11,7 +11,7 @@ import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.service.ManufacturerAlreadyExistsException;
 import com.lsy.vehicle.service.ManufacturerService;
 
-@Stateless
+@Stateless(mappedName="ManufacturerService")
 @Local(ManufacturerService.class)
 public class ManufacturerServiceBean implements ManufacturerService {
 
@@ -41,5 +41,10 @@ public class ManufacturerServiceBean implements ManufacturerService {
     public Manufacturer byName(String manufacturerName) {
         return manuDao.findManufacturerByName(manufacturerName);
     }
+
+	@Override
+	public void delete(Manufacturer manufacturer) {
+		manuDao.delete(manufacturer);
+	}
 
 }
