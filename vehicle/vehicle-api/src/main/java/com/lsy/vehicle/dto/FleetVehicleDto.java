@@ -1,8 +1,11 @@
 package com.lsy.vehicle.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FleetVehicleDto {
+public class FleetVehicleDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String vehicleModel;
 	private String manufacturerName;

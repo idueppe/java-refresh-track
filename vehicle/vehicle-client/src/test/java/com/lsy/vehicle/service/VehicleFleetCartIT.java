@@ -29,9 +29,10 @@ public class VehicleFleetCartIT {
 
 	@Before
 	public void setUp() throws NamingException {
-//		fleetCart = (VehicleFleetCart) JNDI.lookup(JNDI.JBOSS_ENV, "vehicle-ear/?????/remote");
+		fleetCart = (VehicleFleetCart) JNDI.lookup(JNDI.JBOSS_ENV, "vehicle-ear/VehicleFleetCartBean/remote");
+//		fleetCart = (VehicleFleetCart) JNDI.lookup(JNDI.JBOSS_ENV, "vehicle-ear/VehicleFleetCartBean/remote-com.lsy.vehicle.controller.VehicleFleetCart");
 		vehicleController = (VehicleController) JNDI.lookup(JNDI.JBOSS_ENV,	"vehicle-ear/VehicleControllerBean/remote");
-		fleetController = (VehicleFleetController) JNDI.lookup(JNDI.JBOSS_ENV,	"vehicle-ear/FleetControllerBean/remote");
+		fleetController = (VehicleFleetController) JNDI.lookup(JNDI.JBOSS_ENV, "vehicle-ear/VehicleFleetControllerBean/remote");
 	}
 
 	@Test
