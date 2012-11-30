@@ -3,10 +3,13 @@ package com.lsy.vehicle.dao.spi.jpa;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.lsy.vehicle.domain.Engine;
@@ -14,11 +17,13 @@ import com.lsy.vehicle.domain.EngineType;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.domain.Vehicle;
 
+@Singleton
+@Startup
 public class DBFixture {
+	
+	private static final Logger LOG = Logger.getLogger(DBFixture.class.getName());
 
-    @PersistenceUnit(unitName="vehicle-foundation")
-    private EntityManagerFactory emf;
-    
+    @PersistenceContext(name="vehicle-foundation")
     private EntityManager em;
     
     private List<Manufacturer> manufacturers = new ArrayList<Manufacturer>();
@@ -31,7 +36,9 @@ public class DBFixture {
 
     private Engine currentEngine;
 
+    @PostConstruct
     public void createDefaultDataInDatabase() {
+    	LOG.info("Creating dummy data...");
         this.createManufacturer("Buggati")
             .addVehicle()
             .setModelName("Veyron")
@@ -50,22 +57,10 @@ public class DBFixture {
     
     
     public DBFixture persistAll() {
-        beginTx();
         persistAll(manufacturers);
         persistAll(engines);
         persistAll(vehicles);
-        commitTx();
         return this;
-    }
-    
-    private void beginTx() {
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
-    }
-    
-    private void commitTx() {
-        em.getTransaction().commit();
-        em.close();
     }
     
     private DBFixture clear() {
@@ -79,12 +74,10 @@ public class DBFixture {
     }
     
     public DBFixture removeAll() {
-        beginTx();
         em.createQuery("DELETE FROM Vehicle").executeUpdate();
         em.createQuery("DELETE FROM Engine").executeUpdate();
         em.createQuery("DELETE FROM Manufacturer").executeUpdate();
         em.createQuery("DELETE FROM ApplicationLog").executeUpdate();
-        commitTx();
         clear();
         return this;
     }
