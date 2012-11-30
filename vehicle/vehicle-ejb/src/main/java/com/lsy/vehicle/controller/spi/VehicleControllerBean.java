@@ -3,7 +3,7 @@ package com.lsy.vehicle.controller.spi;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import com.lsy.vehicle.controller.VehicleController;
@@ -16,7 +16,7 @@ import com.lsy.vehicle.service.ApplicationLogService;
 import com.lsy.vehicle.service.VehicleService;
 
 @Stateless
-@Local(VehicleController.class)
+@Remote(VehicleController.class)
 public class VehicleControllerBean implements VehicleController {
 
     @EJB
