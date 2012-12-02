@@ -1,10 +1,10 @@
 package de.crowdcode.training;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import javax.naming.NamingException;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class CalculatorEjbIT {
 

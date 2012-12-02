@@ -1,12 +1,11 @@
 package com.lsy.vehicle.service;
 
-import static org.junit.Assert.assertNotNull;
+import com.lsy.vehicle.dto.LogEntry;
+import org.junit.Test;
 
 import java.util.List;
 
-import org.junit.Test;
-
-import com.lsy.vehicle.dto.LogEntry;
+import static org.junit.Assert.assertNotNull;
 
 
 public class JBossConnectorServiceIT {

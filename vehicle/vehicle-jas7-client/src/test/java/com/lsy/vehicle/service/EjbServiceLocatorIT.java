@@ -1,14 +1,12 @@
 package com.lsy.vehicle.service;
 
-import static org.junit.Assert.assertNotNull;
+import com.lsy.vehicle.dto.LogEntry;
+import de.crowdcode.training.jbossas.EjbServiceLocator;
+import org.junit.Test;
 
 import javax.naming.NamingException;
 
-import org.junit.Test;
-
-import com.lsy.vehicle.dto.LogEntry;
-
-import de.crowdcode.training.jbossas.EjbServiceLocator;
+import static org.junit.Assert.assertNotNull;
 
 
 public class EjbServiceLocatorIT {

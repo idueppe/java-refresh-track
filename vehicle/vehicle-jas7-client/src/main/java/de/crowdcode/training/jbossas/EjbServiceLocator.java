@@ -1,15 +1,14 @@
 package de.crowdcode.training.jbossas;
 
-import java.io.InputStream;
-import java.util.Hashtable;
-import java.util.Properties;
+import com.lsy.vehicle.service.ApplicationLogService;
+import com.lsy.vehicle.service.ConnectionException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
-import com.lsy.vehicle.service.ApplicationLogService;
-import com.lsy.vehicle.service.ConnectionException;
+import java.io.InputStream;
+import java.util.Hashtable;
+import java.util.Properties;
 
 public class EjbServiceLocator {
 	

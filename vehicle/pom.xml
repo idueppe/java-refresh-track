@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.crowdcode.training</groupId>
@@ -15,7 +14,8 @@
 		<module>vehicle-ejb</module>
 		<module>vehicle-ear</module>
 		<module>vehicle-client</module>
-	</modules>
+    <module>vehicle-web</module>
+  </modules>
 
 	<prerequisites>
 		<maven>3.0.3</maven>
@@ -33,6 +33,13 @@
 				<artifactId>vehicle-ejb</artifactId>
 				<version>${project.version}</version>
 				<type>ejb</type>
+			</dependency>
+
+			<dependency>
+				<groupId>de.crowdcode.training</groupId>
+				<artifactId>vehicle-web</artifactId>
+				<version>${project.version}</version>
+                <type>war</type>
 			</dependency>
 
 			<dependency>
@@ -83,8 +90,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.5.1</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>1.7</source>
+						<target>1.7</target>
 					</configuration>
 				</plugin>
 				<!-- The JBoss AS plugin deploys your ear to a local JBoss AS container -->

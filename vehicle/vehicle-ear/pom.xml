@@ -15,11 +15,20 @@
 	<name>Vehicle EAR Module</name>
 
 	<dependencies>
+        <dependency>
+            <groupId>de.crowdcode.training</groupId>
+            <artifactId>vehicle-api</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>de.crowdcode.training</groupId>
 			<artifactId>vehicle-ejb</artifactId>
 			<type>ejb</type>
 		</dependency>
+        <dependency>
+            <groupId>de.crowdcode.training</groupId>
+            <artifactId>vehicle-web</artifactId>
+            <type>war</type>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -36,8 +45,19 @@
 						<ejbModule>
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-ejb</artifactId>
-							<bundleFileName>vehicle-ejb</bundleFileName>
+							<!--<bundleFileName>vehicle-ejb</bundleFileName>-->
 						</ejbModule>
+                        <webModule>
+                            <groupId>de.crowdcode.training</groupId>
+                            <artifactId>vehicle-web</artifactId>
+                            <!--<bundleFileName>vehicle-web</bundleFileName>-->
+                            <contextRoot>vehicle-web</contextRoot>
+                        </webModule>
+                        <jarModule>
+                            <groupId>de.crowdcode.training</groupId>
+                            <artifactId>vehicle-api</artifactId>
+                            <!--<bundleFileName>vehicle-api</ bundleFileName>-->
+                        </jarModule>
 					</modules>
 				</configuration>
 			</plugin>

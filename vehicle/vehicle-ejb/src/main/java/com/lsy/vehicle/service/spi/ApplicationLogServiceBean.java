@@ -1,18 +1,13 @@
 package com.lsy.vehicle.service.spi;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-
 import com.lsy.vehicle.converter.LogEntryConverter;
 import com.lsy.vehicle.dao.ApplicationLogDao;
 import com.lsy.vehicle.domain.ApplicationLog;
 import com.lsy.vehicle.dto.LogEntry;
 import com.lsy.vehicle.service.ApplicationLogService;
+
+import javax.ejb.*;
+import java.util.List;
 
 @Stateless
 @Remote(ApplicationLogService.class)

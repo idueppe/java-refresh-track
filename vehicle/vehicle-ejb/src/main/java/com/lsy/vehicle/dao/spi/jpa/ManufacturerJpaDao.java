@@ -1,15 +1,14 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
-import java.util.List;
+import com.lsy.vehicle.dao.ManufacturerDao;
+import com.lsy.vehicle.domain.Manufacturer;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import com.lsy.vehicle.dao.ManufacturerDao;
-import com.lsy.vehicle.domain.Manufacturer;
+import java.util.List;
 
 @Stateless
 @Local(ManufacturerDao.class)

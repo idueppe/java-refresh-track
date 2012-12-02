@@ -1,8 +1,8 @@
 package com.lsy.vehicle.controller;
 
-import java.util.List;
-
 import com.lsy.vehicle.dto.ManufacturerDto;
+
+import java.util.List;
 
 public interface ManufacturerController {
 
@@ -13,5 +13,6 @@ public interface ManufacturerController {
     public void addManufacturer(String manufacturerName);
     
     public void deleteManufacturer(String manufacturerName);
-    
+
+    boolean doManufacturerExists(String manufacturerName);
 }

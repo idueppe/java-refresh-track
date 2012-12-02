@@ -1,19 +1,18 @@
 package com.lsy.vehicle.controller.spi;
 
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.converter.ManufacturerConverter;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.dto.ManufacturerDto;
 import com.lsy.vehicle.service.ManufacturerAlreadyExistsException;
 import com.lsy.vehicle.service.ManufacturerService;
+
+import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless()
 @Remote(ManufacturerController.class)
@@ -53,6 +52,11 @@ public class ManufacturerControllerBean implements ManufacturerController {
     	if (manufacturer != null) {
     		manufacturerService.delete(manufacturer);
     	}
+    }
+
+    @Override
+    public boolean doManufacturerExists(String manufacturerName) {
+        return manufacturerService.doesManufacturerExists(manufacturerName);
     }
 
 }

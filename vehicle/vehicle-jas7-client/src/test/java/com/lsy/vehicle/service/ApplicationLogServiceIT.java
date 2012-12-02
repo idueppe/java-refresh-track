@@ -1,17 +1,14 @@
 package com.lsy.vehicle.service;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
-import javax.naming.NamingException;
-
+import com.lsy.vehicle.dto.LogEntry;
+import de.crowdcode.training.JNDI;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.lsy.vehicle.dto.LogEntry;
+import javax.naming.NamingException;
+import java.util.List;
 
-import de.crowdcode.training.JNDI;
+import static org.junit.Assert.assertNotNull;
 
 
 public class ApplicationLogServiceIT {

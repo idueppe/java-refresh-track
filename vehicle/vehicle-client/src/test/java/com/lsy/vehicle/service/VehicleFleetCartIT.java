@@ -1,23 +1,18 @@
 package com.lsy.vehicle.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
-import javax.naming.NamingException;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.lsy.vehicle.controller.VehicleController;
 import com.lsy.vehicle.controller.VehicleFleetCart;
 import com.lsy.vehicle.controller.VehicleFleetController;
 import com.lsy.vehicle.dto.FleetVehicleDto;
 import com.lsy.vehicle.dto.VehicleDto;
-
 import de.crowdcode.training.JNDI;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.naming.NamingException;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class VehicleFleetCartIT {
 

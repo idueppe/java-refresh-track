@@ -1,18 +1,17 @@
 package com.lsy.vehicle.service.spi;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.dao.ManufacturerDao;
 import com.lsy.vehicle.dao.VehicleDao;
 import com.lsy.vehicle.domain.EngineType;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.service.VehicleService;
+
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import java.util.LinkedList;
+import java.util.List;
 
 @Stateless
 @Local(VehicleService.class)

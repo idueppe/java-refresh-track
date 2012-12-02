@@ -1,8 +1,8 @@
 package com.lsy.vehicle.service;
 
-import java.util.List;
-
 import com.lsy.vehicle.domain.Manufacturer;
+
+import java.util.List;
 
 public interface ManufacturerService {
     

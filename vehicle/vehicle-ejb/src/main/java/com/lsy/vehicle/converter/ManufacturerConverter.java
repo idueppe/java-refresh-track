@@ -1,10 +1,10 @@
 package com.lsy.vehicle.converter;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.dto.ManufacturerDto;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class ManufacturerConverter extends AbstractDefaultConverter<Manufacturer, ManufacturerDto>{

@@ -1,9 +1,9 @@
 package com.lsy.vehicle.controller;
 
-import java.util.List;
-
 import com.lsy.vehicle.dto.FleetVehicleDto;
 import com.lsy.vehicle.dto.VehicleDto;
+
+import java.util.List;
 
 public interface VehicleFleetController {
 	

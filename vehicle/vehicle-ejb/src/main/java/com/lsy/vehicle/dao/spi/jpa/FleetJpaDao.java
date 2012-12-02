@@ -1,6 +1,7 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
-import java.util.List;
+import com.lsy.vehicle.dao.FleetDao;
+import com.lsy.vehicle.domain.Fleet;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -8,9 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import com.lsy.vehicle.dao.FleetDao;
-import com.lsy.vehicle.domain.Fleet;
+import java.util.List;
 
 @Stateless
 @Local(FleetDao.class)

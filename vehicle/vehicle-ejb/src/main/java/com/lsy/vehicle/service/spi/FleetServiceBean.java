@@ -1,15 +1,14 @@
 package com.lsy.vehicle.service.spi;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.dao.FleetDao;
 import com.lsy.vehicle.domain.Fleet;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.service.FleetService;
+
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 @Local(FleetService.class)

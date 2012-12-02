@@ -1,9 +1,9 @@
 package com.lsy.vehicle.converter;
 
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.domain.ApplicationLog;
 import com.lsy.vehicle.dto.LogEntry;
+
+import javax.ejb.Stateless;
 
 @Stateless
 public class LogEntryConverter extends AbstractDefaultConverter<ApplicationLog, LogEntry>{

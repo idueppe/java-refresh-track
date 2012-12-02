@@ -1,22 +1,14 @@
 package com.lsy.vehicle.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 
 @Entity
 @NamedQueries(
-	value = @NamedQuery(name="fleetByCompanyName", query="SELECT f FROM Fleet f WHERE f.companyName = :companyName")	
-	)
+	value = @NamedQuery(name="fleetByCompanyName", query="SELECT f FROM Fleet f WHERE f.companyName = :companyName")
+)
 public class Fleet {
 	
 	@Id

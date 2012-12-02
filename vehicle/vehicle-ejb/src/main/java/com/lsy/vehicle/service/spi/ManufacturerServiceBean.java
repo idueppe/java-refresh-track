@@ -1,15 +1,14 @@
 package com.lsy.vehicle.service.spi;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.dao.ManufacturerDao;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.service.ManufacturerAlreadyExistsException;
 import com.lsy.vehicle.service.ManufacturerService;
+
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless(mappedName="ManufacturerService")
 @Local(ManufacturerService.class)

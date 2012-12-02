@@ -1,22 +1,13 @@
 package com.lsy.vehicle.domain;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(name="ApplicationLog.LOAD_ALL"
-			,   query="SELECT o FROM ApplicationLog o")
+			,   query="SELECT log FROM ApplicationLog log")
 })
 public class ApplicationLog {
 

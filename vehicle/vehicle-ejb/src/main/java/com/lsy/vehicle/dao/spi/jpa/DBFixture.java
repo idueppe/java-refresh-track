@@ -1,9 +1,9 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Logger;
+import com.lsy.vehicle.domain.Engine;
+import com.lsy.vehicle.domain.EngineType;
+import com.lsy.vehicle.domain.Manufacturer;
+import com.lsy.vehicle.domain.Vehicle;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -11,11 +11,10 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import com.lsy.vehicle.domain.Engine;
-import com.lsy.vehicle.domain.EngineType;
-import com.lsy.vehicle.domain.Manufacturer;
-import com.lsy.vehicle.domain.Vehicle;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
 
 @Singleton
 @Startup
@@ -52,6 +51,10 @@ public class DBFixture {
             .addVehicle()
             .setModelName("Trabbi")
             .addEngine(EngineType.PETROL)
+            .createManufacturer("AUDI")
+            .addVehicle()
+            .setModelName("A4")
+            .addEngine(EngineType.DIESEL)
             .persistAll();
     }
     
@@ -137,7 +140,7 @@ public class DBFixture {
     }
     
     public void terminateAllActiveSessionInDB() {
-        Query nativeQuery = em.createNamedQuery("SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname = 'vehicle-tmp'");
+        Query nativeQuery = em.createNativeQuery("SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname = 'vehicle-tmp'");
         nativeQuery.executeUpdate();
     }
     

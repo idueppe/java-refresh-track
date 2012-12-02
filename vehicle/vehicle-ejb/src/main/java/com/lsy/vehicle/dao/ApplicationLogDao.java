@@ -1,8 +1,8 @@
 package com.lsy.vehicle.dao;
 
-import java.util.List;
-
 import com.lsy.vehicle.domain.ApplicationLog;
+
+import java.util.List;
 
 public interface ApplicationLogDao {
 

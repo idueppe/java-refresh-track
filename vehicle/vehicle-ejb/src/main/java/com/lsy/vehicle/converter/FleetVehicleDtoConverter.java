@@ -1,9 +1,9 @@
 package com.lsy.vehicle.converter;
 
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.dto.FleetVehicleDto;
+
+import javax.ejb.Stateless;
 
 @Stateless
 public class FleetVehicleDtoConverter extends AbstractDefaultConverter<Vehicle, FleetVehicleDto> {

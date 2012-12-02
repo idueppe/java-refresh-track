@@ -1,16 +1,8 @@
 package com.lsy.vehicle.domain;
 
+import javax.persistence.*;
 import java.net.URL;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Version;
 
 @Entity
 @NamedQueries(value={

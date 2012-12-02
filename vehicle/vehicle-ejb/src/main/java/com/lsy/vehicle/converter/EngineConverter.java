@@ -1,9 +1,9 @@
 package com.lsy.vehicle.converter;
 
-import javax.ejb.Stateless;
-
 import com.lsy.vehicle.domain.Engine;
 import com.lsy.vehicle.dto.EngineDto;
+
+import javax.ejb.Stateless;
 
 /**
  * @author idueppe

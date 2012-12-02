@@ -1,18 +1,12 @@
 package com.lsy.vehicle.service;
 
-import java.io.InputStream;
-import java.util.Properties;
+import org.jboss.ejb.client.*;
+import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
-
-import org.jboss.ejb.client.ContextSelector;
-import org.jboss.ejb.client.EJBClient;
-import org.jboss.ejb.client.EJBClientConfiguration;
-import org.jboss.ejb.client.EJBClientContext;
-import org.jboss.ejb.client.PropertiesBasedEJBClientConfiguration;
-import org.jboss.ejb.client.StatelessEJBLocator;
-import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class JBossConnector {
 

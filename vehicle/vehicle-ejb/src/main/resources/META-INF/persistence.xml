@@ -5,6 +5,13 @@
 	
 	<persistence-unit name="vehicle-foundation">
 		<jta-data-source>java:/VehicleFoundationDS</jta-data-source>
+        <class>com.lsy.vehicle.domain.Fleet</class>
+        <class>com.lsy.vehicle.domain.ApplicationLog</class>
+        <class>com.lsy.vehicle.domain.Engine</class>
+        <class>com.lsy.vehicle.domain.EngineType</class>
+        <class>com.lsy.vehicle.domain.Manufacturer</class>
+        <class>com.lsy.vehicle.domain.Message</class>
+        <class>com.lsy.vehicle.domain.Vehicle</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="false" />
