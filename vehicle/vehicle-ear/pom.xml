@@ -12,7 +12,7 @@
 	<artifactId>vehicle-ear</artifactId>
 	<packaging>ear</packaging>
 
-	<name>Vehicle EAR module</name>
+	<name>Vehicle EAR Module</name>
 
 	<dependencies>
 		<dependency>

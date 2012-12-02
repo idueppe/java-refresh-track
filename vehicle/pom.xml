@@ -7,7 +7,7 @@
 	<artifactId>vehicle</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>vehicle application</name>
+	<name>Vehicle Multi-Project</name>
 
 	<modules>
 		<module>jboss-custom-client</module>

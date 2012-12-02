@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 	<version>6.1.0.Final-SNAPSHOT</version>
 
-	<name>Vehicle Api Module</name>
+	<name>Vehicle JBoss Custom Client</name>
 	<url>https://github.com/idueppe</url>
 
 <!-- 	<build> -->

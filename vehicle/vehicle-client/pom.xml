@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>vehicle-client</artifactId>
 
-	<name>vehicle-client</name>
+	<name>Vehicle Client</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

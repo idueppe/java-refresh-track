@@ -12,7 +12,7 @@
 	<artifactId>vehicle-ejb</artifactId>
 	<packaging>ejb</packaging>
 
-	<name>Vehicle EJB module</name>
+	<name>Vehicle EJB Module</name>
 
 	<dependencies>
 		<dependency>
