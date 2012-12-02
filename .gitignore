@@ -3,7 +3,9 @@
 .settings
 .projects
 .classes
-.springbeans
+.springbeans                                    
+*.iml
+.idea
 
 # Package Files #
 *.jar
