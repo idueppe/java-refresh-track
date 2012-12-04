@@ -101,11 +101,8 @@
 				<plugin>
 					<groupId>org.jboss.as.plugins</groupId>
 					<artifactId>jboss-as-maven-plugin</artifactId>
-					<version>7.0.2.Final</version>
+					<version>7.3.Final</version>
 					<inherited>true</inherited>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

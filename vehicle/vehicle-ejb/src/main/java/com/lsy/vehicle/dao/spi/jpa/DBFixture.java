@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,22 +44,30 @@ public class DBFixture {
             .setModelName("Veyron")
             .setNettoPrice(1200000.00)
             .addEngine(EngineType.PETROL)
+            .setConstructionDate(new Date())
             .addVehicle()
             .setModelName("Veyron Diesel")
             .setNettoPrice(999000.00)
+            .setConstructionDate(new Date())
             .addEngine(EngineType.DIESEL)
             .createManufacturer("VW")
             .addVehicle()
             .setModelName("Trabbi")
+            .setConstructionDate(new Date())
             .addEngine(EngineType.PETROL)
             .createManufacturer("AUDI")
             .addVehicle()
             .setModelName("A4")
             .addEngine(EngineType.DIESEL)
+            .setConstructionDate(new Date())
             .persistAll();
     }
-    
-    
+
+    private DBFixture setConstructionDate(Date date) {
+        currentVehicle.setConstructionDate(date);
+        return this;
+    }
+
     public DBFixture persistAll() {
         persistAll(manufacturers);
         persistAll(engines);

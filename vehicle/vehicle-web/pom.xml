@@ -37,18 +37,6 @@
 
         <!-- JSF Dependencies -->
 
-        <!--<dependency>-->
-            <!--<groupId>org.primefaces</groupId>-->
-            <!--<artifactId>primefaces</artifactId>-->
-            <!--<version>3.4</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.primefaces.themes</groupId>-->
-            <!--<artifactId>bootstrap</artifactId>-->
-            <!--<version>${primefaces.bootstrap.version}</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.richfaces.ui</groupId>
             <artifactId>richfaces-components-ui</artifactId>

@@ -4,6 +4,7 @@ import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.dto.ManufacturerDto;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -11,14 +12,17 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author idueppe
  * @since 1.0
  */
-@ManagedBean()
-@RequestScoped
+@ManagedBean
+@SessionScoped
 public class ManufacturerManager {
+
+    private static final Logger LOG = Logger.getLogger(ManufacturerManager.class.getName());
 
     @EJB
     private ManufacturerController manufacturerController;
@@ -55,12 +59,18 @@ public class ManufacturerManager {
         return manufacturerController.doManufacturerExists(manufacturerName);
     }
 
+    public String updateManufacturer(ManufacturerDto manufacturer) {
+        LOG.info("------- "+manufacturer.getName()+" ----------- SELECTED");
+        this.manufacturer = manufacturerController.byName(manufacturer.getName());
+        return "/views/addmanufacturer";
+    }
+
     public String addManufacturer() {
         manufacturerController.addManufacturer(manufacturer.getName());
 
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setDetail("Neuer Herrsteller " + manufacturer.getName() + " hinzugefügt.");
+        msg.setSummary("Neuer Herrsteller " + manufacturer.getName() + " hinzugefügt.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
 
         return "/views/manufacturers";
