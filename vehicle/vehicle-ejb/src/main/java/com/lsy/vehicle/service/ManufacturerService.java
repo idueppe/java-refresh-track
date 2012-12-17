@@ -15,5 +15,7 @@ public interface ManufacturerService {
     public boolean doesManufacturerExists(String manufacturerName);
 
 	public void delete(Manufacturer manufacturer);
+
+    public void updateManufacturerName(Long id, String name);
     
 }

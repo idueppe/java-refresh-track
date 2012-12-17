@@ -2,6 +2,7 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
    xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
    xmlns:ui="http://java.sun.com/jsf/facelets">
    <h:head>
       <title>Vehicle Fleet Management</title>
@@ -21,7 +22,7 @@
            <hr/>
 
            <ui:insert name="main">
-               [Template Content for main will be insert here.]
+               	[Template Content for main will be insert here.]
            </ui:insert>
 
            <hr/>
@@ -29,6 +30,7 @@
                <ui:insert name="footer">
                     <p>&copy; by Crowdcode</p>
                </ui:insert>
+               <small>Debug: Ctrl+Shift+D <ui:debug rendered="true" hotkey="d" /> </small>
            </div>
        </div>
       <h:outputScript name="js/jquery.js"/>

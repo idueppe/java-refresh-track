@@ -1,17 +1,19 @@
 package com.lsy.vehicle.web.managers;
 
-import com.lsy.vehicle.controller.VehicleController;
-import com.lsy.vehicle.dto.ManufacturerDto;
-import com.lsy.vehicle.dto.VehicleDto;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Logger;
+
+import com.lsy.vehicle.controller.VehicleController;
+import com.lsy.vehicle.dto.EngineDto;
+import com.lsy.vehicle.dto.ManufacturerDto;
+import com.lsy.vehicle.dto.VehicleDto;
 
 /**
  * @author idueppe
@@ -26,7 +28,8 @@ public class VehiclesManager {
     @EJB
     private VehicleController vehicleController;
     private ManufacturerDto manufacturer;
-    private String delete;
+    
+    private VehicleDto vehicle;
 
     public List<VehicleDto> getVehicles() {
         if (manufacturer != null) {
@@ -49,6 +52,15 @@ public class VehiclesManager {
     }
 
     public String addVehicle() {
+        
+        vehicle.setManufacturerName(manufacturer.getName());
+        vehicle.setEngine(new EngineDto());
+        vehicle.getEngine().setEngineType("DIESEL");
+        
+        
+        vehicleController.saveOrUpdateVehicle(vehicle);
+        
+        
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
         msg.setSummary("Diese Funktion ist noch nicht implementiert.");
@@ -60,6 +72,17 @@ public class VehiclesManager {
         // TODO Hier eine Nachricht über den Abbruch absetzen.
         return "/views/vehicles";
     }
+    
+    public String startAddingVehicle() {
+        vehicle = new VehicleDto();
+        return "/views/addvehicle";
+    }
+
+    public String selectForUpdate(VehicleDto vehicle) {
+        this.vehicle = vehicle;
+        return "/views/addvehicle";
+    }
+
 
     public ManufacturerDto getManufacturer() {
         return manufacturer;
@@ -67,6 +90,14 @@ public class VehiclesManager {
 
     public void setManufacturer(ManufacturerDto manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public VehicleDto getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(VehicleDto vehicle) {
+        this.vehicle = vehicle;
     }
 
 }

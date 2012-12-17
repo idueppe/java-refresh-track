@@ -15,4 +15,6 @@ public interface ManufacturerController {
     public void deleteManufacturer(String manufacturerName);
 
     boolean doManufacturerExists(String manufacturerName);
+
+    public void update(ManufacturerDto selectedManufacturer);
 }

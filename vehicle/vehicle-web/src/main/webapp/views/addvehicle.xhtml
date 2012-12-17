@@ -2,6 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
                 template="/WEB-INF/templates/bootstrap.xhtml">
 
     <ui:define name="navigation">
@@ -20,16 +21,25 @@
         <div class="row-fluid">
             <h:form>
                 <h:panelGrid columns="1">
-                    <!-- TODO hier das Formular ergänzen -->
                     <p>
-                        Formular is underconstruction.
-                    </p>
+                    	<h:outputLabel value="Modellname" for="modelName"/>
+                    	<h:inputText id="modelName" value="#{vehiclesManager.vehicle.modelName}" />
+                    	<h:message for="modelName" showDetails="true" errorClass="text_error"/>
+                    	
+                  		<h:outputLabel for="constructionDate" value="Herstellungsdatum"/>
+						<rich:calendar id="constructionDate" 
+							value="#{vehiclesManager.vehicle.constructionDate}" 
+							datePattern="dd.MM.yyyy" 
+							locale="de_DE"/>
+							
+						<!-- TODO dropbown for engine type -->
+						<h:message for="constructionDate" errorClass="text-error"/>     
+	                </p>
                     <h:panelGrid columns="2">
                         <h:commandLink action="#{vehiclesManager.addVehicle}" styleClass="btn btn-primary">Hinzufügen</h:commandLink>
                         <h:commandLink action="#{vehiclesManager.cancelAdding}" styleClass="btn btn-danger" immediate="true">Abbrechen</h:commandLink>
                     </h:panelGrid>
                 </h:panelGrid>
-
             </h:form>
         </div>
     </ui:define>

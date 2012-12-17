@@ -59,4 +59,9 @@ public class ManufacturerControllerBean implements ManufacturerController {
         return manufacturerService.doesManufacturerExists(manufacturerName);
     }
 
+    @Override
+    public void update(ManufacturerDto manufacturer) {
+        manufacturerService.updateManufacturerName(manufacturer.getId(), manufacturer.getName());
+    }
+
 }

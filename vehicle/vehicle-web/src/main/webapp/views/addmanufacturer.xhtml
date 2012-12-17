@@ -2,6 +2,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+         		xmlns:rich="http://richfaces.org/rich"
                 template="/WEB-INF/templates/bootstrap.xhtml">
 
     <ui:define name="navigation">
@@ -18,13 +20,22 @@
         <h1>Manufacturers</h1>
         <div class="row-fluid">
             <h:form>
-                <h:panelGrid columns="1">
+                <h:panelGrid id="fields" columns="3">
+
 
                     <h:outputLabel for="manuName" value="Name des Herstellers:"/>
-                    <h:inputText id="manuName" value="#{manufacturerManager.manufacturer.name}" validator="#{manufacturerManager.validateManufacturerName}"/>
-                    <h:message for="manuName" errorClass="text-error" showDetail="true"/>
+                    <h:inputText id="manuName" 
+                    	value="#{manufacturerManager.manufacturer.name}" 
+                    	required="true"
+                    	validator="#{manufacturerManager.validateManufacturerName}">
+                    	<f:ajax event="keyup" render="nameMsg"/>
+                    </h:inputText>
+                    	
+                    <h:message id="nameMsg" for="manuName" errorClass="text-error" showDetail="true"/>
+
                     <h:panelGrid columns="2">
-                        <h:commandLink action="#{manufacturerManager.addManufacturer}" styleClass="btn btn-primary">Hinzufügen</h:commandLink>
+                        <h:commandLink action="#{manufacturerManager.addManufacturer}" styleClass="btn btn-primary" rendered="#{!manufacturerManager.editing}">Hinzufüge</h:commandLink>
+                        <h:commandLink action="#{manufacturerManager.updateManufacturer}" styleClass="btn btn-primary" rendered="#{manufacturerManager.editing}">Ändern</h:commandLink>
                         <h:commandLink action="#{manufacturerManager.cancelAdding}" styleClass="btn btn-danger" immediate="true">Abbrechen</h:commandLink>
                     </h:panelGrid>
                 </h:panelGrid>

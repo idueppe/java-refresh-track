@@ -50,18 +50,18 @@
 						<ejbModule>
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-ejb</artifactId>
-							<!--<bundleFileName>vehicle-ejb</bundleFileName>-->
+<!-- 							<bundleFileName>vehicle-ejb</bundleFileName> -->
 						</ejbModule>
                         <webModule>
                             <groupId>de.crowdcode.training</groupId>
                             <artifactId>vehicle-web</artifactId>
-                            <!--<bundleFileName>vehicle-web</bundleFileName>-->
+<!--                             <bundleFileName>vehicle-web</bundleFileName> -->
                             <contextRoot>vehicle-web</contextRoot>
                         </webModule>
                         <jarModule>
                             <groupId>de.crowdcode.training</groupId>
                             <artifactId>vehicle-api</artifactId>
-                            <!--<bundleFileName>vehicle-api</ bundleFileName>-->
+<!--                             <bundleFileName>vehicle-api</bundleFileName> -->
                         </jarModule>
 					</modules>
 				</configuration>

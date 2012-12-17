@@ -1,18 +1,19 @@
 package com.lsy.vehicle.web.managers;
 
-import com.lsy.vehicle.controller.ManufacturerController;
-import com.lsy.vehicle.dto.ManufacturerDto;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import java.util.List;
-import java.util.logging.Logger;
+
+import com.lsy.vehicle.controller.ManufacturerController;
+import com.lsy.vehicle.dto.ManufacturerDto;
 
 /**
  * @author idueppe
@@ -26,7 +27,11 @@ public class ManufacturerManager {
 
     @EJB
     private ManufacturerController manufacturerController;
-    private ManufacturerDto manufacturer;
+    
+    @ManagedProperty("#{vehicleManager}")
+    private VehiclesManager vehiclesManager;
+    
+    private ManufacturerDto selectedManufacturer;
     private String uniqueManufacturerName;
 
     public List<ManufacturerDto> getAllManufacturers() {
@@ -34,10 +39,10 @@ public class ManufacturerManager {
     }
 
     public ManufacturerDto getManufacturer() {
-        if (manufacturer == null) {
-            manufacturer = new ManufacturerDto();
+        if (selectedManufacturer == null) {
+            selectedManufacturer = new ManufacturerDto();
         }
-        return manufacturer;
+        return selectedManufacturer;
     }
 
     public String getUniqueManufacturerName() {
@@ -45,7 +50,7 @@ public class ManufacturerManager {
     }
 
     public void validateManufacturerName(FacesContext context, UIComponent component, Object value) {
-        if (doManufacturerNameExistis((String)value)) {
+        if (value != null && doManufacturerNameExistis((String)value)) {
             ((UIInput) component).setValid(false);
             FacesMessage msg = new FacesMessage("Name existiert bereits.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -56,21 +61,32 @@ public class ManufacturerManager {
     }
 
     private boolean doManufacturerNameExistis(String manufacturerName) {
-        return manufacturerController.doManufacturerExists(manufacturerName);
+        ManufacturerDto found = manufacturerController.byName(manufacturerName);
+        // TODO mach lesbar mach richtig!
+        if (found != null && found.getId() != null) {
+            return !found.getId().equals(selectedManufacturer.getId());
+        } else {
+            return false;
+        }
     }
 
-    public String updateManufacturer(ManufacturerDto manufacturer) {
+    public String selectForUpdateManufacturer(ManufacturerDto manufacturer) {
         LOG.info("------- "+manufacturer.getName()+" ----------- SELECTED");
-        this.manufacturer = manufacturerController.byName(manufacturer.getName());
+        this.selectedManufacturer = manufacturerController.byName(manufacturer.getName());
         return "/views/addmanufacturer";
+    }
+    
+    public String updateManufacturer() {
+        manufacturerController.update(selectedManufacturer);
+        return "/views/manufacturers";
     }
 
     public String addManufacturer() {
-        manufacturerController.addManufacturer(manufacturer.getName());
+        manufacturerController.addManufacturer(selectedManufacturer.getName());
 
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Neuer Herrsteller " + manufacturer.getName() + " hinzugefügt.");
+        msg.setSummary("Neuer Herrsteller " + selectedManufacturer.getName() + " hinzugefügt.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
 
         return "/views/manufacturers";
@@ -78,5 +94,22 @@ public class ManufacturerManager {
 
     public String cancelAdding() {
         return "/views/manufacturers";
+    }
+    
+    public String startAddingNewManufacturer() {
+        selectedManufacturer = new ManufacturerDto();
+        return "/views/addmanufacturer";
+    }
+
+    public VehiclesManager getVehiclesManager() {
+        return vehiclesManager;
+    }
+
+    public void setVehiclesManager(VehiclesManager vehiclesManager) {
+        this.vehiclesManager = vehiclesManager;
+    }
+    
+    public boolean isEditing() {
+        return (selectedManufacturer.getId() != null);
     }
 }

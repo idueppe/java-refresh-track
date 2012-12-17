@@ -38,18 +38,19 @@
                         Herstellungsdatum
                     </f:facet>
                     <h:outputText value="#{vehicle.constructionDate}">
-                        <f:convertDateTime dateStyle="short"/>
+                        <f:convertDateTime dateStyle="short" timeZone="GMT+1"/>
                     </h:outputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         Action
                     </f:facet>
+                    <h:commandLink styleClass="btn-small btn-primary" action="#{vehiclesManager.selectForUpdate(vehicle)}">Ändern</h:commandLink>
                     <h:commandLink styleClass="btn-small btn-danger" action="#{vehiclesManager.delete(vehicle)}">Löschen</h:commandLink>
                 </h:column>
             </h:dataTable>
             <hr/>
-            <h:commandLink action="/views/addvehicle" styleClass="btn btn-primary">Hinzufügen</h:commandLink>
+            <h:commandLink action="#{vehiclesManager.startAddingVehicle}" styleClass="btn btn-primary">Hinzufügen</h:commandLink>
         </h:form>
     </ui:define>
 </ui:composition>
