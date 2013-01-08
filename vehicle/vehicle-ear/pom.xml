@@ -71,7 +71,7 @@
 
 	<profiles>
 		<profile>
-			<id>deploy2AS</id>
+			<id>jbossas</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -80,7 +80,7 @@
 						<executions>
 							<execution>
 								<id>deploy-artifact</id>
-								<phase>integration-test</phase>
+								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>deploy-artifact</goal>
 								</goals>
@@ -92,7 +92,7 @@
 							</execution>
 							<execution>
 								<id>add-datasource</id>
-								<phase>integration-test</phase>
+								<phase>pre-integration-test</phase>
 								<configuration>
 									<address>subsystem=datasources,data-source=VehicleDatasource</address>
 									<resource>
