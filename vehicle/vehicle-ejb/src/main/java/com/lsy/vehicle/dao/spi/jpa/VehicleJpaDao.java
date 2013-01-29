@@ -15,7 +15,7 @@ import java.util.List;
 @Local(VehicleDao.class)
 public class VehicleJpaDao implements VehicleDao {
     
-    @PersistenceContext(name="vehicle-foundation")
+    @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
     
     public VehicleJpaDao() {}

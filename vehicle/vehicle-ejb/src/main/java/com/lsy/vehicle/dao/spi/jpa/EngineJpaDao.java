@@ -14,7 +14,7 @@ import java.util.List;
 @Local(EngineDao.class)
 public class EngineJpaDao implements EngineDao {
 
-    @PersistenceContext(name="vehicle-foundation")
+    @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
 
     public EngineJpaDao() {

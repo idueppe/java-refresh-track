@@ -14,7 +14,7 @@ import java.util.List;
 @Local(ManufacturerDao.class)
 public class ManufacturerJpaDao implements ManufacturerDao {
     
-    @PersistenceContext(name="vehicle-foundation")
+    @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
     
     @Override

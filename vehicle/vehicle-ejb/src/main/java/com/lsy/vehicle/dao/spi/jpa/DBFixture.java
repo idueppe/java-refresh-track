@@ -23,7 +23,7 @@ public class DBFixture {
 	
 	private static final Logger LOG = Logger.getLogger(DBFixture.class.getName());
 
-    @PersistenceContext(name="vehicle-foundation")
+    @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
     
     private List<Manufacturer> manufacturers = new ArrayList<Manufacturer>();

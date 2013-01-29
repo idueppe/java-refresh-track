@@ -15,60 +15,45 @@ import java.util.List;
 @Local(FleetDao.class)
 public class FleetJpaDao implements FleetDao {
 
-	@PersistenceContext(name="vehicle-foundation")
-	private EntityManager em;
-	
-	@Override
-	public List<Fleet> findAll() {
-		return null;
-	}
+    @PersistenceContext(unitName = "vehicle-foundation")
+    private EntityManager em;
 
-	@Override
-	public Fleet find(Long id) {
-		return em.find(Fleet.class, id);
-	}
+    @Override
+    public List<Fleet> findAll() {
+        TypedQuery<Fleet> query = em.createNamedQuery(Fleet.FIND_ALL, Fleet.class);
+        return query.getResultList();
+    }
 
-	@Override
-	public void create(Fleet entity) {
-		em.persist(entity);
-	}
+    @Override
+    public Fleet find(Long id) {
+        return em.find(Fleet.class, id);
+    }
 
-	@Override
-	public void delete(Fleet entity) {
-		em.remove(entity);
-	}
+    @Override
+    public void create(Fleet entity) {
+        em.persist(entity);
+    }
 
-	@Override
-	public Fleet update(Fleet entity) {
-		return em.merge(entity);
-	}
+    @Override
+    public void delete(Fleet entity) {
+        em.remove(entity);
+    }
 
-	@Override
-	public Fleet findByCompanyName(String companyName) {
-		TypedQuery<Fleet> query = em.createNamedQuery("fleetByCompanyName",Fleet.class);
-		query.setParameter("companyName", companyName);
-		
-		try {
-			return query.getSingleResult();
-		} catch (NoResultException ex) {
-			return null;
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    @Override
+    public Fleet update(Fleet entity) {
+        return em.merge(entity);
+    }
+
+    @Override
+    public Fleet findByCompanyName(String companyName) {
+        TypedQuery<Fleet> query = em.createNamedQuery(Fleet.FIND_BY_COMPANY_NAME, Fleet.class);
+        query.setParameter("companyName", companyName);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
 
 }
