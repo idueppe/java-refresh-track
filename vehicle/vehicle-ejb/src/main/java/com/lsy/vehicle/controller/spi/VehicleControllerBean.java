@@ -69,4 +69,9 @@ public class VehicleControllerBean implements VehicleController {
     	vehicleService.delete(vehicleEntity);
     }
 
+    @Override
+    public VehicleDto getVehicle(Long vehicleId) {
+        return vehicleConverter.convert(vehicleService.getVehicleById(vehicleId));
+    }
+
 }
