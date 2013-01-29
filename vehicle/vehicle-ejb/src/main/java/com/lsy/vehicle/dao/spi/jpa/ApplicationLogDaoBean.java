@@ -14,7 +14,7 @@ import java.util.List;
 @Local(ApplicationLogDao.class)
 public class ApplicationLogDaoBean implements ApplicationLogDao {
 
-    @PersistenceContext(name="vehicle-foundation")
+    @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
 
     @Override

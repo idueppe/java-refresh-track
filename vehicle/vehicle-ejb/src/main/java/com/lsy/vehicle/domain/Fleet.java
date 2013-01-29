@@ -7,9 +7,15 @@ import java.util.List;
 
 @Entity
 @NamedQueries(
-	value = @NamedQuery(name="fleetByCompanyName", query="SELECT f FROM Fleet f WHERE f.companyName = :companyName")
+	value = {
+	     @NamedQuery(name=Fleet.FIND_BY_COMPANY_NAME, query="SELECT f FROM Fleet f WHERE f.companyName = :companyName"),
+	     @NamedQuery(name=Fleet.FIND_ALL, query="SELECT f FROM Fleet f")
+	}
 )
 public class Fleet {
+    
+    public static final String FIND_BY_COMPANY_NAME = "Fleet.findByCompanyName";
+    public static final String FIND_ALL = "Fleet.findAll";
 	
 	@Id
 	@GeneratedValue
