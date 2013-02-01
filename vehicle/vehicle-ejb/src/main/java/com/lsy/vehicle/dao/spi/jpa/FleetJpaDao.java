@@ -56,4 +56,10 @@ public class FleetJpaDao implements FleetDao {
         }
     }
 
+    @Override
+    public List<String> findAllCompanyNames() {
+        TypedQuery<String> query = em.createNamedQuery(Fleet.FIND_ALL_COMPANY_NAMES, String.class);
+        return query.getResultList();
+    }
+
 }

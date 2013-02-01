@@ -1,6 +1,10 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,6 +46,14 @@ public class FleetDaoTest {
         dao.create(fleet);
         assertNotNull(fleet.getId());
         em.getTransaction().commit();
+    }
+    
+    @Test
+    public void testGetAllCompanyNames() throws Exception {
+        List<String> names = dao.findAllCompanyNames();
+        assertNotNull(names);
+        assertFalse(names.isEmpty());
+        assertEquals("crowdcode", names.get(0));
     }
     
 }

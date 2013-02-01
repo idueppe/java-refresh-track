@@ -32,6 +32,7 @@ public class ManufacturerDtoConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value instanceof ManufacturerDto) {
             ManufacturerDto manufacturer = (ManufacturerDto)value;
+            // FIXME idueppe - uuuuurggghhh - cross site scripting violation
             return manufacturer.getId()+":"+manufacturer.getName();
         } else {
             return "";

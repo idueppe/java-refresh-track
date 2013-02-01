@@ -11,56 +11,43 @@
                 <li><h:commandLink action="/views/home">Start</h:commandLink></li>
                 <li><h:commandLink action="/views/manufacturers">Hersteller</h:commandLink></li>
                 <li><h:commandLink action="/views/vehicles">Fahrzeuge</h:commandLink></li>
-                <li class="active"><h:commandLink action="/views/fleet">Flotte</h:commandLink></li>
+                <li><h:commandLink action="/views/fleet">Flotte</h:commandLink></li>
+                <li class="active"><h:commandLink action="/views/companies">Firmen</h:commandLink></li>
             </ul>
         </h:form>
     </ui:define>
 
-
     <ui:define name="main">
         <h:messages infoClass="info" errorClass="error" warnClass="warning" showSummary="true" showDetail="false" />
-    	<h:form>
-    		<h:outputLabel for="companyName" value="Firmenname"/>
-    		<h:inputText id="companyName" value="#{fleetManager.companyName}">
-    			<f:ajax event="change" execute="@this" render="@this"/>
-    		</h:inputText>
-    		
-    		
+        <h4>Firmenliste</h4>
+   		<h:form>
     		<div class="row">
     			<div class="span3">
-		    		<h:outputLabel for="selectManufacturer" value="Hersteller"/>
-    				<h:selectOneMenu id="selectManufacturer" value="#{fleetManager.selectedManufacturer}">
-    					<f:converter converterId="manufacturerDtoConverter"/>
+		    		<h:outputLabel for="selectCompany" value="Hersteller"/>
+    				<h:selectOneMenu id="selectCompany" value="#{companyManager.selectedCompany}">
 		    			<f:selectItem itemLabel="- bitte wählen -" itemValue="#{null}"/>
-    					<f:selectItems value="#{fleetManager.availableManufacturers}" 
-    						var="m" 
-    						itemLabel="#{m.name}"/>
-		    			<f:ajax event="change" execute="selectManufacturer" render="@form"/>
+    					<f:selectItems value="#{companyManager.companies}"/>
+		    			<f:ajax event="change" execute="" render="@form"/>
     				</h:selectOneMenu>
-    			</div>
-    			<div class="span3">
-		    		<h:outputLabel for="selectVehicle" value="Fahrzeug" rendered="#{not empty fleetManager.selectedManufacturer}"/>
-		    		<h:selectOneMenu id="selectVehicle" value="#{fleetManager.selectedVehicle}" rendered="#{not empty fleetManager.selectedManufacturer}">
-    					<f:converter converterId="vehicleDtoConverter"/>
-		    			<f:selectItem itemLabel="- bitte wählen -" itemValue="#{null}"/>
-		    			<f:selectItems value="#{fleetManager.availableVehicles}" var="v" itemLabel="#{v.modelName}"/>
-		    			<f:ajax event="change" execute="selectVehicle" render="@form"/>
-		    		</h:selectOneMenu>
     			</div>
     			<div class="span3">
     				<br/>
 			        <h:commandLink 
 			        	id="addVehicleButton" 
-			        	action="#{fleetManager.addVehicle}"
-			        	rendered="#{not empty fleetManager.selectedVehicle}" 
-			        	styleClass="btn-small btn-success">Hinzufügen</h:commandLink>
+			        	action="#{fleetManager.addVehicleFor(companyManager.selectedCompany)}"
+			        	rendered="#{not empty companyManager.selectedCompany}" 
+			        	styleClass="btn-small btn-success">Neue Fahrzeuge Hinzufügen</h:commandLink>
     			</div>
     		</div>
-	        <h4>Liste der selektierten Fahrzeugen:</h4>
-            <h:dataTable styleClass="table table-striped" value="#{fleetManager.fleet}" var="vehicle">
+	        <h4>Liste der gespeicherten Fahrzeuge</h4	>
+            <h:dataTable 
+            	styleClass="table table-striped" 
+            	value="#{companyManager.fleet}" 
+            	var="vehicle"
+            	rendered="#{not empty companyManager.selectedCompany}">
                 <h:column >
                     <f:facet name="header">
-                        #
+                        #{vehicle.vehicleId}
                     </f:facet>
                 </h:column>
                 <h:column>
@@ -99,7 +86,6 @@
                 </h:column>
             </h:dataTable>
             <hr/>
-            <h:commandLink styleClass="btn btn-success" action="#{fleetManager.order()}">bestellen</h:commandLink>
         </h:form>
     </ui:define>
 </ui:composition>

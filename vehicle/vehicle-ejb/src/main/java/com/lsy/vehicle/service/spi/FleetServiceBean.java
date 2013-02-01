@@ -33,4 +33,9 @@ public class FleetServiceBean implements FleetService {
 		return fleetDao.findByCompanyName(companyName);
 	}
 
+    @Override
+    public List<String> allCompanyNames() {
+        return fleetDao.findAllCompanyNames();
+    }
+
 }

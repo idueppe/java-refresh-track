@@ -9,13 +9,15 @@ import java.util.List;
 @NamedQueries(
 	value = {
 	     @NamedQuery(name=Fleet.FIND_BY_COMPANY_NAME, query="SELECT f FROM Fleet f WHERE f.companyName = :companyName"),
-	     @NamedQuery(name=Fleet.FIND_ALL, query="SELECT f FROM Fleet f")
+	     @NamedQuery(name=Fleet.FIND_ALL, query="SELECT f FROM Fleet f"),
+	     @NamedQuery(name=Fleet.FIND_ALL_COMPANY_NAMES, query="SELECT f.companyName FROM Fleet f")
 	}
 )
 public class Fleet {
     
     public static final String FIND_BY_COMPANY_NAME = "Fleet.findByCompanyName";
     public static final String FIND_ALL = "Fleet.findAll";
+    public static final String FIND_ALL_COMPANY_NAMES = "Fleet.findAllCompanyNames";
 	
 	@Id
 	@GeneratedValue
@@ -24,7 +26,7 @@ public class Fleet {
 	@Column(unique=true)
 	private String companyName;
 	
-	@OneToMany()
+	@ManyToMany()
 	private List<Vehicle> vehicles;
 	
 	@Version

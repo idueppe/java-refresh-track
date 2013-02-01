@@ -11,4 +11,6 @@ public interface FleetService {
 
 	Fleet findFleetByName(String companyName);
 
+    List<String> allCompanyNames();
+
 }

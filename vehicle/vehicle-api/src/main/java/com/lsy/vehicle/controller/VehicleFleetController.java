@@ -9,5 +9,7 @@ public interface VehicleFleetController {
 	public List<FleetVehicleDto> getVehicleFleetByName(String companyName);
 
 	public void addVehicles(String companyName, List<FleetVehicleDto> vehicleList);
+	
+	public List<String> allCompanyNames();
 
 }

@@ -1,7 +1,6 @@
 package com.lsy.vehicle.controller.spi;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -47,5 +46,10 @@ public class VehicleFleetControllerBean implements VehicleFleetController {
 		
 		fleetService.addVehicles(companyName, vehicles);
 	}
+
+    @Override
+    public List<String> allCompanyNames() {
+        return fleetService.allCompanyNames();
+    }
 
 }

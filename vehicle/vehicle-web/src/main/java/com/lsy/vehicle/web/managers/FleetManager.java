@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.el.ExpressionFactory;
+import javax.el.ValueExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -103,6 +105,7 @@ public class FleetManager{
         // Different variations of removing a session scoped bean
         
 //        facesContext.getApplication().createValueBinding("#{fleetManager}").setValue(facesContext, null);
+        
 //        ExpressionFactory expressionFactory = facesContext.getApplication().getExpressionFactory();
 //        ValueExpression valueExpression = expressionFactory.createValueExpression("#{fleetManager}", FleetManager.class);
 //        valueExpression.setValue(facesContext.getELContext(), null);
