@@ -1,19 +1,20 @@
 package com.lsy.vehicle.controller.spi;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import com.lsy.vehicle.controller.VehicleFleetController;
 import com.lsy.vehicle.converter.FleetVehicleDtoConverter;
 import com.lsy.vehicle.domain.Fleet;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.dto.FleetVehicleDto;
-import com.lsy.vehicle.dto.VehicleDto;
 import com.lsy.vehicle.service.FleetService;
 import com.lsy.vehicle.service.VehicleService;
-
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import java.util.ArrayList;
-import java.util.List;
 
 @Stateless
 @Remote(VehicleFleetController.class)
@@ -31,16 +32,16 @@ public class VehicleFleetControllerBean implements VehicleFleetController {
 	@Override
 	public List<FleetVehicleDto> getVehicleFleetByName(String companyName) {
 		Fleet fleet = fleetService.findFleetByName(companyName);
-		return fleetVehicleDtoConverter.convert(fleet.getVehicles());
+	    return fleetVehicleDtoConverter.convert(fleet.getVehicles());
 	}
 
 	@Override
-	public void addVehicles(String companyName, List<VehicleDto> vehicleList) {
+	public void addVehicles(String companyName, List<FleetVehicleDto> vehicleList) {
 
 		List<Vehicle> vehicles = new ArrayList<Vehicle>();
 		
-		for (VehicleDto dto : vehicleList) {
-			Vehicle vehicle = vehicleService.getVehicleById(dto.getId());
+		for (FleetVehicleDto dto : vehicleList) {
+			Vehicle vehicle = vehicleService.getVehicleById(dto.getVehicleId());
 			vehicles.add(vehicle);
 		}
 		

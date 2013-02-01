@@ -1,24 +1,27 @@
 package com.lsy.vehicle.web.managers;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.controller.VehicleController;
+import com.lsy.vehicle.controller.VehicleFleetCart;
 import com.lsy.vehicle.dto.FleetVehicleDto;
 import com.lsy.vehicle.dto.ManufacturerDto;
 import com.lsy.vehicle.dto.VehicleDto;
 
 @ManagedBean
 @SessionScoped
-public class FleetManager {
+public class FleetManager{
     
     private static final Logger LOG = Logger.getLogger(FleetManager.class.getName());
 
@@ -28,13 +31,14 @@ public class FleetManager {
     @EJB
     private VehicleController vehicleController;
     
+    @EJB
+    private VehicleFleetCart fleetCart;
+    
     private ManufacturerDto selectedManufacturer;
     
     private VehicleDto selectedVehicle;
     
     private String companyName;
-    
-    private List<FleetVehicleDto> fleet = new ArrayList<>();
     
     public List<ManufacturerDto> getAvailableManufacturers()  {
         return manufacturerController.allManufactures();
@@ -49,25 +53,61 @@ public class FleetManager {
     }
     
     public List<FleetVehicleDto> getFleet() {
-        return fleet;
+        return fleetCart.listCart();
     }
     
     public String addVehicle() {
-        LOG.info("Adding vehicle to fleet...");
+        LOG.info("Adding selected vehicle "+selectedVehicle.getModelName()+" to fleet.");
         
         FleetVehicleDto fleetVehicle = new FleetVehicleDto();
+        fleetVehicle.setVehicleId(selectedVehicle.getId());
         fleetVehicle.setVehicleModel(selectedVehicle.getModelName());
         fleetVehicle.setOrderDate(new Date());
-        fleetVehicle.setManufacturerName(selectedManufacturer.getName());
+        fleetVehicle.setManufacturerName(selectedVehicle.getManufacturerName());
         fleetVehicle.setConstructionDate(selectedVehicle.getConstructionDate());
         
-        fleet.add(fleetVehicle);
+        fleetCart.add(fleetVehicle);
         
-        return "";
+        selectedVehicle = null;
+        selectedManufacturer = null;
+        
+        return null;
     }
 
     public String delete(FleetVehicleDto vehicle) {
+        LOG.info("Deleting vehicle "+vehicle.getVehicleModel()+" from car.");
+        fleetCart.remove(vehicle);
+        
         return null;
+    }
+    
+    @PostConstruct
+    public void postConstruct() {
+        LOG.info("Opening new fleet cart");
+    }
+    
+    @PreDestroy
+    public void preDestroy() {
+        LOG.info("Closing fleet cart");
+        fleetCart.close();
+        // cause misleading log statement see https://issues.jboss.org/browse/AS7-5077
+        fleetCart = null;
+    }
+    
+    public String order() {
+        fleetCart.order(companyName);
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        facesContext.getExternalContext().getSessionMap().put("fleetManager", null);
+        
+        // Different variations of removing a session scoped bean
+        
+//        facesContext.getApplication().createValueBinding("#{fleetManager}").setValue(facesContext, null);
+//        ExpressionFactory expressionFactory = facesContext.getApplication().getExpressionFactory();
+//        ValueExpression valueExpression = expressionFactory.createValueExpression("#{fleetManager}", FleetManager.class);
+//        valueExpression.setValue(facesContext.getELContext(), null);
+        
+        return "/views/companies";
     }
     
     public void setSelectedManufacturer(ManufacturerDto selectedManufacturer) {

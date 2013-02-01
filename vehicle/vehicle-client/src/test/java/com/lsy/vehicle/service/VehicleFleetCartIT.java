@@ -35,7 +35,10 @@ public class VehicleFleetCartIT {
 		List<VehicleDto> vehicles = vehicleController.findVehicleByManufacturer("Buggati");
 
 		for (VehicleDto vehicleDto : vehicles) {
-			fleetCart.add(vehicleDto);
+		    FleetVehicleDto dto = new FleetVehicleDto();
+		    dto.setVehicleId(vehicleDto.getId());
+		    dto.setVehicleModel(vehicleDto.getModelName());
+			fleetCart.add(dto);
 		}
 
 		assertEquals("Cart size is wrong", vehicles.size(), fleetCart.listCart().size());

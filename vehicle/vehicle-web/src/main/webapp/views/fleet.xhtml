@@ -21,7 +21,9 @@
         <h:messages infoClass="info" errorClass="error" warnClass="warning" showSummary="true" showDetail="false" />
     	<h:form>
     		<h:outputLabel for="companyName" value="Firmenname"/>
-    		<h:inputText id="companyName" value="Name der Firma" />
+    		<h:inputText id="companyName" value="Name der Firma">
+    			<f:ajax event="change" execute="companyName"/>
+    		</h:inputText>
     		
     		
     		<div class="row">
@@ -52,7 +54,7 @@
 			        	styleClass="btn-small btn-success">Hinzufügen</h:commandLink>
     			</div>
     		</div>
-	        <h4>Liste der gespeicherten Fahrzeuge</h4	>
+	        <h4>Liste der selektierten Fahrzeugen:</h4>
             <h:dataTable styleClass="table table-striped" value="#{fleetManager.fleet}" var="vehicle">
                 <h:column >
                     <f:facet name="header">
@@ -95,6 +97,7 @@
                 </h:column>
             </h:dataTable>
             <hr/>
+            <h:commandLink styleClass="btn btn-success" action="#{fleetManager.order()}">bestellen</h:commandLink>
         </h:form>
     </ui:define>
 </ui:composition>

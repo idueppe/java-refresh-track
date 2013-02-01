@@ -7,6 +7,7 @@ public class FleetVehicleDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Long vehicleId;
 	private String vehicleModel;
 	private String manufacturerName;
 	private Date orderDate;
@@ -43,4 +44,12 @@ public class FleetVehicleDto implements Serializable {
 	public void setConstructionDate(Date constructionDate) {
 		this.constructionDate = constructionDate;
 	}
+
+    public Long getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(Long vehicleId) {
+        this.vehicleId = vehicleId;
+    }
 }

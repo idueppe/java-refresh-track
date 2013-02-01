@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.converter.ManufacturerConverter;
@@ -29,13 +28,15 @@ public class ManufacturerControllerBean implements ManufacturerController {
 
     @Override
     public List<ManufacturerDto> allManufactures() {
-        // TODO Bitte implementiert diese Methode.
-        return null;
+        return manufacturerConverter.convert(manufacturerService.findAll());
     }
 
     @Override
     public void addManufacturer(String manufacturerName) {
-        // TODO Bitte implementiert diese Methode.
+        Manufacturer manufacturer = manufacturerService.byName(manufacturerName);
+        if (manufacturer != null) {
+            manufacturerService.delete(manufacturer);
+        }
     }
 
     @Override

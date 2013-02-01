@@ -42,4 +42,9 @@ public class ManufacturerServiceBean implements ManufacturerService {
         return manuDao.findManufacturerByName(manufacturerName);
     }
 
+    @Override
+    public void delete(Manufacturer manufacturer) {
+        throw new UnsupportedOperationException("Deleting an Manufacturer is not supported yet!");
+    }
+
 }
