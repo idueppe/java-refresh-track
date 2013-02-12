@@ -52,4 +52,10 @@ public class VehicleFleetControllerBean implements VehicleFleetController {
         return fleetService.allCompanyNames();
     }
 
+    @Override
+    public void deleteVehicle(String companyName, FleetVehicleDto vehicleDto) {
+        Vehicle vehicle = vehicleService.getVehicleById(vehicleDto.getVehicleId());
+        fleetService.deleteVehicle(companyName, vehicle);
+    }
+
 }

@@ -1,8 +1,17 @@
 package com.lsy.vehicle.domain;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Transient;
+import javax.persistence.Version;
 
 
 @Entity
@@ -25,6 +34,10 @@ public class Fleet {
 	
 	@Column(unique=true)
 	private String companyName;
+	
+	@Transient
+	private int nameLength;
+
 	
 	@ManyToMany()
 	private List<Vehicle> vehicles;
@@ -58,6 +71,10 @@ public class Fleet {
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
 	}
+
+    public void delete(Vehicle vehicle) {
+        getVehicles().remove(vehicle);
+    }
 
 
 }

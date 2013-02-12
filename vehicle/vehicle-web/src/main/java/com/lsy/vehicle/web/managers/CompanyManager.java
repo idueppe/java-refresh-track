@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.lsy.vehicle.controller.VehicleFleetController;
 import com.lsy.vehicle.dto.FleetVehicleDto;
+import com.lsy.vehicle.dto.VehicleDto;
 
 @ManagedBean
 @SessionScoped
@@ -40,6 +41,11 @@ public class CompanyManager {
         } else {
             return Collections.emptyList();
         }
+    }
+    
+    public String deleteVehicle(FleetVehicleDto vehicle) {
+        fleetController.deleteVehicle(selectedCompany, vehicle);
+        return "";
     }
     
 }

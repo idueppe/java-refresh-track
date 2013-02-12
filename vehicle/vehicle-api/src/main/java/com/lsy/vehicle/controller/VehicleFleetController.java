@@ -12,4 +12,6 @@ public interface VehicleFleetController {
 	
 	public List<String> allCompanyNames();
 
+    public void deleteVehicle(String selectedCompany, FleetVehicleDto vehicle);
+
 }

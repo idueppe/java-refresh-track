@@ -1,17 +1,19 @@
 package com.lsy.vehicle.service.spi;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import com.lsy.vehicle.dao.ManufacturerDao;
 import com.lsy.vehicle.dao.VehicleDao;
 import com.lsy.vehicle.domain.EngineType;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.domain.Vehicle;
+import com.lsy.vehicle.service.VehicleObserverRegistration;
 import com.lsy.vehicle.service.VehicleService;
-
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import java.util.LinkedList;
-import java.util.List;
 
 @Stateless
 @Local(VehicleService.class)
@@ -22,6 +24,9 @@ public class VehicleServiceBean implements VehicleService {
     
     @EJB
     private ManufacturerDao manufacturerDao;
+    
+    @EJB
+    private VehicleObserverRegistration observerRegistration;
 
     @Override
     public Vehicle getCheapestVehicle() {
@@ -66,6 +71,7 @@ public class VehicleServiceBean implements VehicleService {
 
 	@Override
 	public void delete(Vehicle vehicle) {
+	    observerRegistration.notifyDeletingVehicle(vehicle);
 		vehicleDao.delete(vehicle);
 	}
 

@@ -1,7 +1,6 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
-import com.lsy.vehicle.dao.FleetDao;
-import com.lsy.vehicle.domain.Fleet;
+import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -9,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.List;
+
+import com.lsy.vehicle.dao.FleetDao;
+import com.lsy.vehicle.domain.Fleet;
 
 @Stateless
 @Local(FleetDao.class)
@@ -58,8 +59,26 @@ public class FleetJpaDao implements FleetDao {
 
     @Override
     public List<String> findAllCompanyNames() {
+//        TypedQuery<Fleet> fleetQuery = em.createQuery("SELECT f FROM Fleet f", Fleet.class);
+//        List<String> names = new ArrayList<String>();
+//        for(Fleet fleet: fleetQuery.getResultList()) {
+//            names.add(fleet.getCompanyName());
+//        }
+//        return names;
+//        
         TypedQuery<String> query = em.createNamedQuery(Fleet.FIND_ALL_COMPANY_NAMES, String.class);
         return query.getResultList();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+

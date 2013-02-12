@@ -27,7 +27,7 @@
     				<h:selectOneMenu id="selectCompany" value="#{companyManager.selectedCompany}">
 		    			<f:selectItem itemLabel="- bitte wählen -" itemValue="#{null}"/>
     					<f:selectItems value="#{companyManager.companies}"/>
-		    			<f:ajax event="change" execute="" render="@form"/>
+		    			<f:ajax event="change" execute="selectCompany" render="@form"/>
     				</h:selectOneMenu>
     			</div>
     			<div class="span3">
@@ -82,7 +82,7 @@
                     <f:facet name="header">
                         Action
                     </f:facet>
-                    <h:commandLink styleClass="btn-small btn-danger" action="#{fleetManager.delete(vehicle)}">Löschen</h:commandLink>
+                    <h:commandLink styleClass="btn-small btn-danger" action="#{companyManager.deleteVehicle(vehicle)}">Löschen</h:commandLink>
                 </h:column>
             </h:dataTable>
             <hr/>
