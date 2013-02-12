@@ -21,7 +21,8 @@
         <h:messages infoClass="info" errorClass="error" warnClass="warning" showSummary="true" showDetail="false" />
     	<h:form>
     		<h:outputLabel for="companyName" value="Firmenname"/>
-    		<h:inputText id="companyName" value="#{fleetManager.companyName}">
+    		<h:outputText value="#{fleetManager.companyName}" rendered="#{fleetManager.addingToExistingCompany}" />
+    		<h:inputText id="companyName" value="#{fleetManager.companyName}" rendered="#{not fleetManager.addingToExistingCompany}">
     			<f:ajax event="change" execute="@this" render="@this"/>
     		</h:inputText>
     		

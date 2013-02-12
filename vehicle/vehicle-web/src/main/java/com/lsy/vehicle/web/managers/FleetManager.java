@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.el.ExpressionFactory;
-import javax.el.ValueExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -41,6 +39,7 @@ public class FleetManager{
     private VehicleDto selectedVehicle;
     
     private String companyName;
+    private boolean addingToExistingCompany;
     
     public List<ManufacturerDto> getAvailableManufacturers()  {
         return manufacturerController.allManufactures();
@@ -96,6 +95,12 @@ public class FleetManager{
         fleetCart = null;
     }
     
+    public String addVehicleFor(String companyName) {
+        this.companyName = companyName;
+        addingToExistingCompany = true;
+        return "/views/fleet";
+    }
+    
     public String order() {
         fleetCart.order(companyName);
 
@@ -138,7 +143,6 @@ public class FleetManager{
         } else {
             this.selectedVehicle = null;
         }
-            
     }
 
     public String getCompanyName() {
@@ -147,6 +151,10 @@ public class FleetManager{
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public boolean isAddingToExistingCompany() {
+        return addingToExistingCompany;
     }
     
 
