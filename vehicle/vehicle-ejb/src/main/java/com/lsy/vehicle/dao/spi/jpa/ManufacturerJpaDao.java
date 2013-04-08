@@ -1,14 +1,17 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
-import com.lsy.vehicle.dao.ManufacturerDao;
-import com.lsy.vehicle.domain.Manufacturer;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.List;
+
+import com.lsy.vehicle.dao.ManufacturerDao;
+import com.lsy.vehicle.domain.EngineType;
+import com.lsy.vehicle.domain.Manufacturer;
 
 @Stateless
 @Local(ManufacturerDao.class)
@@ -45,7 +48,7 @@ public class ManufacturerJpaDao implements ManufacturerDao {
 
     @Override
     public Manufacturer findManufacturerByName(String name) {
-        TypedQuery<Manufacturer> query = em.createNamedQuery("findManufacturerByName", Manufacturer.class);
+        TypedQuery<Manufacturer> query = em.createNamedQuery(Manufacturer.FIND_BY_NAME, Manufacturer.class);
         query.setParameter("name", name);
         List<Manufacturer> manufacturers = query.getResultList();
         if (manufacturers.size() > 0) {
@@ -53,6 +56,13 @@ public class ManufacturerJpaDao implements ManufacturerDao {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Manufacturer> findManufacturerWithEngineType(EngineType... engineType) {
+        TypedQuery<Manufacturer> query = em.createNamedQuery(Manufacturer.FIND_WITH_ENGINETYPE, Manufacturer.class);
+        query.setParameter("engineType", Arrays.asList(engineType));
+        return query.getResultList();
     }
 
 }

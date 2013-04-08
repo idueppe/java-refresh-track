@@ -15,7 +15,6 @@ import javax.persistence.Query;
 
 import com.lsy.vehicle.domain.Engine;
 import com.lsy.vehicle.domain.EngineType;
-import com.lsy.vehicle.domain.Fleet;
 import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.domain.Vehicle;
 
@@ -31,14 +30,12 @@ public class DBFixture {
     private List<Manufacturer> manufacturers = new ArrayList<>();
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Engine> engines = new ArrayList<>();
-    private List<Fleet> fleets = new ArrayList<>();
 
     private Manufacturer currentManufacturer;
 
     private Vehicle currentVehicle;
     private Engine currentEngine;
-    private Fleet currentFleet;
-
+    
     @PostConstruct
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
@@ -63,8 +60,6 @@ public class DBFixture {
             .setModelName("A4")
             .addEngine(EngineType.DIESEL)
             .setConstructionDate(new Date())
-            .createFleet("crowdcode")
-            .addVehicleToFleet(0)
             .persistAll();
     }
 
@@ -74,10 +69,10 @@ public class DBFixture {
     }
 
     public DBFixture persistAll() {
+        
         persistAll(manufacturers);
         persistAll(engines);
         persistAll(vehicles);
-        persistAll(fleets);
         return this;
     }
     
@@ -85,16 +80,13 @@ public class DBFixture {
         manufacturers.clear();
         vehicles.clear();
         engines.clear();
-        fleets.clear();
         currentEngine = null;
         currentVehicle = null;
         currentManufacturer = null;
-        currentFleet = null;
         return null;
     }
     
     public DBFixture removeAll() {
-        em.createQuery("DELETE FROM Fleet").executeUpdate();
         em.createQuery("DELETE FROM Vehicle").executeUpdate();
         em.createQuery("DELETE FROM Engine").executeUpdate();
         em.createQuery("DELETE FROM Manufacturer").executeUpdate();
@@ -144,18 +136,6 @@ public class DBFixture {
         return this;
     }
     
-    public DBFixture createFleet(String companyName) {
-        currentFleet = new Fleet();
-        currentFleet.setCompanyName(companyName);
-        fleets.add(currentFleet);
-        return this;
-    }
-    
-    public DBFixture addVehicleToFleet(int vehicleIndex) {
-        currentFleet.getVehicles().add(vehicles.get(vehicleIndex));
-        return this;
-    }
-
     public Manufacturer buildManufacturer(String manufacturerName) {
         Manufacturer manufacturer = new Manufacturer();
         manufacturer.setName(manufacturerName);

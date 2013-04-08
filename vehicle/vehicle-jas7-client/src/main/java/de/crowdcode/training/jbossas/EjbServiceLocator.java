@@ -1,6 +1,6 @@
 package de.crowdcode.training.jbossas;
 
-import com.lsy.vehicle.service.ApplicationLogService;
+import com.lsy.vehicle.log.service.ApplicationLogService;
 import com.lsy.vehicle.service.ConnectionException;
 
 import javax.naming.Context;

@@ -1,7 +1,7 @@
 package com.lsy.vehicle.converter;
 
-import com.lsy.vehicle.domain.ApplicationLog;
-import com.lsy.vehicle.dto.LogEntry;
+import com.lsy.vehicle.log.domain.ApplicationLog;
+import com.lsy.vehicle.log.dto.LogEntry;
 
 import javax.ejb.Stateless;
 

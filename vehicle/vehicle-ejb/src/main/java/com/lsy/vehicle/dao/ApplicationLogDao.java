@@ -1,6 +1,6 @@
 package com.lsy.vehicle.dao;
 
-import com.lsy.vehicle.domain.ApplicationLog;
+import com.lsy.vehicle.log.domain.ApplicationLog;
 
 import java.util.List;
 

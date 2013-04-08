@@ -6,7 +6,7 @@ import com.lsy.vehicle.domain.Engine;
 import com.lsy.vehicle.domain.EngineType;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.dto.VehicleDto;
-import com.lsy.vehicle.service.ApplicationLogService;
+import com.lsy.vehicle.log.service.ApplicationLogService;
 import com.lsy.vehicle.service.VehicleService;
 
 import javax.ejb.EJB;

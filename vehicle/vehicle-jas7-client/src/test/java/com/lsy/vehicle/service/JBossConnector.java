@@ -3,6 +3,8 @@ package com.lsy.vehicle.service;
 import org.jboss.ejb.client.*;
 import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
 
+import com.lsy.vehicle.log.service.ApplicationLogService;
+
 import javax.naming.Context;
 import javax.naming.NamingException;
 import java.io.InputStream;

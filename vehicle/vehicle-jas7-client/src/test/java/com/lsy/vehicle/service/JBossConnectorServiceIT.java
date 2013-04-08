@@ -1,6 +1,8 @@
 package com.lsy.vehicle.service;
 
-import com.lsy.vehicle.dto.LogEntry;
+import com.lsy.vehicle.log.dto.LogEntry;
+import com.lsy.vehicle.log.service.ApplicationLogService;
+
 import org.junit.Test;
 
 import java.util.List;

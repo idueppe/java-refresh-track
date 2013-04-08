@@ -2,16 +2,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	
+
 	<persistence-unit name="vehicle-foundation">
 		<jta-data-source>java:/VehicleFoundationDS</jta-data-source>
-        <class>com.lsy.vehicle.domain.Fleet</class>
-        <class>com.lsy.vehicle.domain.ApplicationLog</class>
-        <class>com.lsy.vehicle.domain.Engine</class>
-        <class>com.lsy.vehicle.domain.EngineType</class>
-        <class>com.lsy.vehicle.domain.Manufacturer</class>
-        <class>com.lsy.vehicle.domain.Message</class>
-        <class>com.lsy.vehicle.domain.Vehicle</class>
+		<class>com.lsy.vehicle.domain.Engine</class>
+		<class>com.lsy.vehicle.domain.EngineType</class>
+		<class>com.lsy.vehicle.domain.Manufacturer</class>
+		<class>com.lsy.vehicle.domain.Vendor</class>
+		<class>com.lsy.vehicle.domain.Message</class>
+		<class>com.lsy.vehicle.domain.Vehicle</class>
+		<class>com.lsy.vehicle.fleet.domain.Fleet</class>
+		<class>com.lsy.vehicle.log.domain.ApplicationLog</class>
+		<class>com.lsy.vehicle.usermanagement.domain.User</class>
+		<class>com.lsy.vehicle.usermanagement.domain.FleetGroup</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="false" />
@@ -20,5 +23,5 @@
 			<property name="hibernate.id.new_generator_mappings" value="true" />
 		</properties>
 	</persistence-unit>
-	
+
 </persistence>

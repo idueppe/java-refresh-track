@@ -1,18 +1,37 @@
 package com.lsy.vehicle.domain;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
 @Entity
 @NamedQueries(value = {
-        @NamedQuery(name = "findManufacturerByName", query = "SELECT m FROM Manufacturer m WHERE m.name = :name"),
+        @NamedQuery(
+             name = Manufacturer.FIND_BY_NAME, 
+             query = "SELECT m FROM Manufacturer m WHERE m.name = :name"),
+        @NamedQuery(
+             name = Manufacturer.FIND_WITH_ENGINETYPE, 
+             query = "SELECT DISTINCT m FROM Manufacturer AS m JOIN FETCH m.vehicles AS v WHERE v.engine.type IN (:engineType)")
+            
 })
-public class Manufacturer {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType=DiscriminatorType.CHAR)
+@DiscriminatorValue("M")
+public class Manufacturer extends AbstractEntity {
+    
+    public static final String FIND_BY_NAME = "Manufacturer.findByName";
+    public static final String FIND_WITH_ENGINETYPE = "Manufacturer.findWithEngineType";
 
     @Column(unique=true)
     private String name;
@@ -23,16 +42,6 @@ public class Manufacturer {
     @OneToMany(mappedBy = "manufacturer", cascade = { CascadeType.ALL})
     private List<Engine> ownedEngines = new ArrayList<Engine>();
 
-    @Version
-    private long version;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -88,6 +97,11 @@ public class Manufacturer {
 
     public void setOwnedEngines(List<Engine> engines) {
         this.ownedEngines = engines;
+    }
+
+    @Override
+    public String toString() {
+        return "Manufacturer [name=" + name + "]";
     }
 
 }

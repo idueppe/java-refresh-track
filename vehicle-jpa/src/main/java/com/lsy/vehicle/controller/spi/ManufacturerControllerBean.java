@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lsy.vehicle.controller.ManufacturerController;
 import com.lsy.vehicle.converter.ManufacturerConverter;
@@ -12,6 +13,7 @@ import com.lsy.vehicle.dto.ManufacturerDto;
 import com.lsy.vehicle.service.ManufacturerService;
 
 @Service
+@Transactional
 public class ManufacturerControllerBean implements ManufacturerController {
     
     @Autowired

@@ -1,7 +1,7 @@
 package com.lsy.vehicle.dao.spi.jpa;
 
 import com.lsy.vehicle.dao.ApplicationLogDao;
-import com.lsy.vehicle.domain.ApplicationLog;
+import com.lsy.vehicle.log.domain.ApplicationLog;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;

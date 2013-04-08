@@ -1,8 +1,24 @@
 package com.lsy.vehicle.domain;
 
-import javax.persistence.*;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OrderColumn;
+import javax.persistence.Version;
 
 @Entity
 @NamedQueries(value={
@@ -10,12 +26,12 @@ import java.util.Date;
     @NamedQuery(name="vehicleFindByManufacturerName", query="SELECT v FROM Vehicle v WHERE v.manufacturer.name = :name"),
     @NamedQuery(name="vehicleByEngineType", query="SELECT v FROM Vehicle v WHERE v.engine.type = :engineType"),
     @NamedQuery(name="vehicleFindCheapest", query="SELECT v FROM Vehicle v WHERE v.nettoPrice = (SELECT min(v.nettoPrice) FROM Vehicle v)")
-    
 })
+
 public class Vehicle {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne()
@@ -27,6 +43,15 @@ public class Vehicle {
     private String model;
     private Double nettoPrice;
     private Date constructionDate;
+    
+    @Embedded
+    @ElementCollection
+    @OrderColumn
+    @AttributeOverrides({
+        @AttributeOverride(name="name", column=@Column(name="seat_name")),
+        @AttributeOverride(name="type", column=@Column(name="seat_type"))
+    })
+    private List<Seat> seat;
 
     private int kilometres;
 
