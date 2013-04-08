@@ -13,8 +13,8 @@
 		<class>com.lsy.vehicle.domain.Vehicle</class>
 		<class>com.lsy.vehicle.fleet.domain.Fleet</class>
 		<class>com.lsy.vehicle.log.domain.ApplicationLog</class>
-		<class>com.lsy.vehicle.usermanagement.domain.User</class>
-		<class>com.lsy.vehicle.usermanagement.domain.FleetGroup</class>
+		<class>com.lsy.vehicle.security.domain.User</class>
+		<class>com.lsy.vehicle.security.domain.FleetGroup</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="false" />

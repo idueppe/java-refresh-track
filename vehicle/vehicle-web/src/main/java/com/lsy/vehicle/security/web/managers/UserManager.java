@@ -6,8 +6,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.lsy.vehicle.usermanagement.controller.SecurityServiceController;
-import com.lsy.vehicle.usermanagement.dto.UserDto;
+import com.lsy.vehicle.security.controller.SecurityServiceController;
+import com.lsy.vehicle.security.dto.UserDto;
 
 @ManagedBean
 @SessionScoped

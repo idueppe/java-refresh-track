@@ -7,7 +7,7 @@ import javax.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.lsy.vehicle.usermanagement.dto.UserDto;
+import com.lsy.vehicle.security.dto.UserDto;
 
 
 @FacesConverter("userDtoConverter")

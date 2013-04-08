@@ -7,9 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.lsy.vehicle.fleet.controller.VehicleFleetController;
-import com.lsy.vehicle.usermanagement.controller.SecurityServiceController;
-import com.lsy.vehicle.usermanagement.dto.FleetGroupDto;
-import com.lsy.vehicle.usermanagement.dto.UserDto;
+import com.lsy.vehicle.security.controller.SecurityServiceController;
+import com.lsy.vehicle.security.dto.FleetGroupDto;
+import com.lsy.vehicle.security.dto.UserDto;
 
 @ManagedBean
 @SessionScoped

@@ -9,7 +9,7 @@ import javax.ejb.Startup;
 
 import com.lsy.vehicle.dao.spi.jpa.DBFixture;
 import com.lsy.vehicle.fleet.dao.spi.jpa.DBFixtureFleets;
-import com.lsy.vehicle.usermanagement.dao.spi.DBFixtureUser;
+import com.lsy.vehicle.security.dao.spi.DBFixtureUser;
 
 @Singleton
 @Startup

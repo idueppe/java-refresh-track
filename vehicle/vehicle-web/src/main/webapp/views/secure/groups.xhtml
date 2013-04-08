@@ -47,7 +47,7 @@
 						rendered="#{not empty groupManager.selectedGroup}">
 						<f:selectItems value="#{groupManager.allCustomers}" var="user"
 							itemValue="#{user}"
-							itemLabel="#{user.username} #{user.firstname} #{user.surename}" />
+							itemLabel="#{user.username}" />
 						<f:converter converterId="userDtoConverter" />
 					</rich:pickList>
 				</div>
