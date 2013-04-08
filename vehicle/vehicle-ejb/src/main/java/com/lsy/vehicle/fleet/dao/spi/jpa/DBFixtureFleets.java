@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +13,6 @@ import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.fleet.domain.Fleet;
 
 @Singleton
-@Startup
 public class DBFixtureFleets {
 	
 	private static final Logger LOG = Logger.getLogger(DBFixtureFleets.class.getName());
@@ -27,7 +24,6 @@ public class DBFixtureFleets {
 
     private Fleet currentFleet;
     
-    @PostConstruct
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
         this.createFleet("crowdcode")

@@ -13,11 +13,11 @@ import com.lsy.vehicle.usermanagement.dao.UserDao;
 import com.lsy.vehicle.usermanagement.domain.FleetGroup;
 import com.lsy.vehicle.usermanagement.domain.Role;
 import com.lsy.vehicle.usermanagement.domain.User;
-import com.lsy.vehicle.usermanagement.service.SecurityManager;
+import com.lsy.vehicle.usermanagement.service.SecurityService;
 
 @Stateless
-@Local(SecurityManager.class)
-public class SecurityManagerBean implements SecurityManager {
+@Local(SecurityService.class)
+public class SecurityServiceBean implements SecurityService {
 
     @EJB
     private FleetGroupDao groupDao;
@@ -64,7 +64,7 @@ public class SecurityManagerBean implements SecurityManager {
 
     @Override
     public void addUserToGroup(String companyName, String username) {
-        FleetGroup group = groupDao.findGroupByCompanyName(companyName);
+        FleetGroup group = getGroupByCompanyName(companyName);
         User user = userDao.findByUsername(username);
         group.getUsers().add(user);
         groupDao.update(group);

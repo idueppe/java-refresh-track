@@ -1,7 +1,9 @@
-package com.lsy.vehicle.converter;
+package com.lsy.commons.converter;
 
 import java.util.Collection;
 import java.util.List;
+
+import com.lsy.vehicle.converter.ConversionException;
 
 /**
  * @author idueppe

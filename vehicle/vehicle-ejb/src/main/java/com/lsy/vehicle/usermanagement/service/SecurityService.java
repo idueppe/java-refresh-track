@@ -5,7 +5,7 @@ import java.util.List;
 import com.lsy.vehicle.usermanagement.domain.FleetGroup;
 import com.lsy.vehicle.usermanagement.domain.User;
 
-public interface SecurityManager {
+public interface SecurityService {
     
     public void registerUser(User user);
     

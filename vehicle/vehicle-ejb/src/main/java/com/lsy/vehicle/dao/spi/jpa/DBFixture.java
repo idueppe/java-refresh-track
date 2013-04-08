@@ -6,9 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,7 +17,6 @@ import com.lsy.vehicle.domain.Manufacturer;
 import com.lsy.vehicle.domain.Vehicle;
 
 @Singleton
-@Startup
 public class DBFixture {
 	
 	private static final Logger LOG = Logger.getLogger(DBFixture.class.getName());
@@ -36,7 +33,6 @@ public class DBFixture {
     private Vehicle currentVehicle;
     private Engine currentEngine;
     
-    @PostConstruct
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
         this.createManufacturer("Buggati")

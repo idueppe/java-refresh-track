@@ -1,5 +1,6 @@
 package com.lsy.vehicle.converter;
 
+import com.lsy.commons.converter.AbstractDefaultConverter;
 import com.lsy.vehicle.log.domain.ApplicationLog;
 import com.lsy.vehicle.log.dto.LogEntry;
 

@@ -1,5 +1,6 @@
 package com.lsy.vehicle.converter;
 
+import com.lsy.commons.converter.AbstractDefaultConverter;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.dto.VehicleDto;
 
