@@ -18,7 +18,9 @@ import com.lsy.vehicle.security.domain.User;
 @Singleton
 public class DBFixtureUser {
 	
-	private static final Logger LOG = Logger.getLogger(DBFixtureUser.class.getName());
+	public static final String COMPANY_NAME = "crowdcode";
+
+    private static final Logger LOG = Logger.getLogger(DBFixtureUser.class.getName());
 
     @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
@@ -38,7 +40,7 @@ public class DBFixtureUser {
             .createUser("customer", "customer@junit")
             .setRole(Role.CUSTOMER)
             .createFleetGroup()
-            .addFleet("crowdcode")
+            .addFleet(COMPANY_NAME)
             .addUser(0)
             .addUser(1)
             .addUser(2)

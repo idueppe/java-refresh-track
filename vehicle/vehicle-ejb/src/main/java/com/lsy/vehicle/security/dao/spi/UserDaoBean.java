@@ -58,4 +58,11 @@ public class UserDaoBean implements UserDao {
         return query.getResultList();
     }
 
+    @Override
+    public List<User> findAllCustomersNotMemberOfCompany(String companyName) {
+        TypedQuery<User> query = em.createNamedQuery(User.FIND_NO_CUSTOMER_MEMBER_BY_COMPANY_NAME, User.class);
+        query.setParameter("companyName", companyName);
+        return query.getResultList();
+    }
+
 }

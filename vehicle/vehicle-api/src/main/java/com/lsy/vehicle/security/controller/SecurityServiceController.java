@@ -13,8 +13,10 @@ public interface SecurityServiceController {
     
     public List<UserDto> findAllCustomer();
     
+    public List<UserDto> findAllCustomersNotMemberOf(String companyName);
+    
     public FleetGroupDto getGroupByCompanyName(String companyName);
     
     public void addUserToGroup(String companyName, String username);
-
+    
 }

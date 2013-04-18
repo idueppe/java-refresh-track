@@ -20,5 +20,7 @@ public interface UserDao {
     public List<User> findAll();
 
     public List<User> findAllOfRole(Role customer);
+    
+    public List<User> findAllCustomersNotMemberOfCompany(String companyName);
 
 }

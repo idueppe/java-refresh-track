@@ -13,6 +13,8 @@ public interface SecurityService {
     
     public List<User> findAllCustomer();
     
+    public List<User> findAllCustomerNotMemberOf(String companyName);
+    
     public FleetGroup getGroupByCompanyName(String companyName);
     
     public void addUserToGroup(String companyName, String username);

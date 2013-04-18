@@ -1,9 +1,12 @@
 package com.lsy.vehicle.security.dao.spi.jpa;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -65,17 +68,12 @@ public class UserDaoTest {
     @Test
     public void testCreateUnitUser() {
         em.getTransaction().begin();
-        User user = new User();
-        user.setFirstname("J");
-        user.setSurename("Unit");
-        user.setUsername("junit");
-        user.setEmail("j@unit");
-        user.setRole(Role.AGENT);
+        User user = buildUser(Role.AGENT);
         dao.create(user);
         assertNotNull(user.getId());
         em.getTransaction().commit();
     }
-    
+
     @Test
     public void testFindDummyUsers() {
         em.getTransaction().begin();
@@ -93,11 +91,45 @@ public class UserDaoTest {
     }
     
     @Test
+    public void testFindNotMembers() {
+        User user = buildUser(Role.CUSTOMER);
+
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
+        
+        List<User> users = dao.findAllCustomersNotMemberOfCompany(DBFixtureUser.COMPANY_NAME);
+        assertNotNull(users);
+        assertFalse(users.isEmpty());
+        
+        assertEquals(user, users.get(0));
+    }
+
+    @Test
+    public void testFindNotMembersForNotExistingCompany() {
+        List<User> users = dao.findAllCustomersNotMemberOfCompany("DOES-NOT-EXISTS-"+UUID.randomUUID());
+        assertNotNull(users);
+        assertTrue(users.isEmpty());
+    }
+    
+    @Test
     public void testFindByRole() {
         List<User> customers = dao.findAllOfRole(Role.CUSTOMER);
         for (User user : customers) {
             assertEquals(Role.CUSTOMER, user.getRole());
         }
     }
+    
+    private User buildUser(Role role) {
+        User user = new User();
+        user.setFirstname("J");
+        user.setSurename("Unit");
+        user.setUsername("junit");
+        user.setEmail("j@unit");
+        user.setRole(role);
+        return user;
+    }
+    
+
     
 }

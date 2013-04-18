@@ -31,7 +31,7 @@ public class GroupManager{
     }
     
     public List<UserDto> getAllCustomers() {
-        return securityController.findAllCustomer();
+        return securityController.findAllCustomersNotMemberOf(selectedCompany);
     }
     
     public String getSelectedCompany() {

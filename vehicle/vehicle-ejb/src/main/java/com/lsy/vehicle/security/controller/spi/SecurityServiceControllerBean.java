@@ -60,4 +60,9 @@ public class SecurityServiceControllerBean implements SecurityServiceController 
     public void addUserToGroup(String companyName, String username) {
         securityService.addUserToGroup(companyName, username);
     }
+
+    @Override
+    public List<UserDto> findAllCustomersNotMemberOf(String companyName) {
+        return userConverter.convert(securityService.findAllCustomerNotMemberOf(companyName));
+    }
 }
