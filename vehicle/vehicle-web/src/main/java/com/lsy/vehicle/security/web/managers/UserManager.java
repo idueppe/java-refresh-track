@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.lsy.vehicle.security.controller.SecurityServiceController;
 import com.lsy.vehicle.security.dto.UserDto;
 
@@ -18,8 +20,23 @@ public class UserManager{
     
     private UserDto selectedUser;
     
+    private UserDto filter = new UserDto();
+    
     public List<UserDto> getAllUsers() {
-        return securityController.findAllUsers();
+        return securityController.findByFilter(
+                        wild(filter.getUsername()),
+                        wild(filter.getEmail()),
+                        wild(filter.getFirstname()),
+                        wild(filter.getSurename()),
+                        filter.getRole());
+    }
+    
+    private String wild(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            return "%"+value+"%";
+        } else {
+            return value;
+        }
     }
     
     public UserDto getSelectedUser() {
@@ -39,6 +56,14 @@ public class UserManager{
     public String cancelAdding() {
         selectedUser = null;
         return "/views/secure/users";
+    }
+
+    public UserDto getFilter() {
+        return filter;
+    }
+
+    public void setFilter(UserDto filter) {
+        this.filter = filter;
     }
     
 

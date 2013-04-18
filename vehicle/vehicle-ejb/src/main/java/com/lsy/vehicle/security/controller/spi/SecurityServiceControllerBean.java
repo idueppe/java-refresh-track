@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.lsy.vehicle.security.controller.SecurityServiceController;
 import com.lsy.vehicle.security.converter.FleetGroupConverter;
 import com.lsy.vehicle.security.converter.UserConverter;
@@ -64,5 +66,15 @@ public class SecurityServiceControllerBean implements SecurityServiceController 
     @Override
     public List<UserDto> findAllCustomersNotMemberOf(String companyName) {
         return userConverter.convert(securityService.findAllCustomerNotMemberOf(companyName));
+    }
+
+    @Override
+    public List<UserDto> findByFilter(String username, String email, String firstname,
+                    String surename, String roleName) {
+        Role role = null;
+        if (StringUtils.isNotBlank(roleName)) {
+            role = Role.valueOf(roleName);
+        }
+        return userConverter.convert(securityService.findByFilter(username, email, firstname, surename, role));
     }
 }
