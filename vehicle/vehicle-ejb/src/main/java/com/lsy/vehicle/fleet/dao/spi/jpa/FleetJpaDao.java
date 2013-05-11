@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.lsy.vehicle.fleet.dao.FleetDao;
+import com.lsy.vehicle.fleet.domain.EngineInfo;
 import com.lsy.vehicle.fleet.domain.Fleet;
 
 @Stateless
@@ -62,6 +63,15 @@ public class FleetJpaDao implements FleetDao {
         TypedQuery<String> query = em.createNamedQuery(Fleet.FIND_ALL_COMPANY_NAMES, String.class);
         return query.getResultList();
     }
+    
+    public List<EngineInfo> getEngineReport(String companyName) {
+        TypedQuery<EngineInfo> query = em.createNamedQuery(Fleet.ENGINE_REPORT, EngineInfo.class);
+        query.setParameter("companyName", companyName);
+        
+        return query.getResultList();
+    }
+    
+    
 
 }
 

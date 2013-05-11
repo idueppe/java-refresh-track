@@ -8,6 +8,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.fleet.domain.Fleet;
@@ -15,7 +16,9 @@ import com.lsy.vehicle.fleet.domain.Fleet;
 @Singleton
 public class DBFixtureFleets {
 	
-	private static final Logger LOG = Logger.getLogger(DBFixtureFleets.class.getName());
+	public static final String COMPANY_NAME = "crowdcode";
+
+    private static final Logger LOG = Logger.getLogger(DBFixtureFleets.class.getName());
 
     @PersistenceContext(unitName="vehicle-foundation")
     private EntityManager em;
@@ -26,8 +29,10 @@ public class DBFixtureFleets {
     
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
-        this.createFleet("crowdcode")
-            .addVehicleToFleet(0l)
+        this.createFleet(COMPANY_NAME)
+            .addVehicleToFleet("Veyron")
+            .addVehicleToFleet("Veyron Diesel")
+            .addVehicleToFleet("A4")
             .persistAll();
     }
 
@@ -71,8 +76,10 @@ public class DBFixtureFleets {
         return this;
     }
     
-    public DBFixtureFleets addVehicleToFleet(Long vehicleId) {
-        Vehicle vehicle = em.find(Vehicle.class, vehicleId);
+    public DBFixtureFleets addVehicleToFleet(String model) {
+        TypedQuery<Vehicle> query = em.createQuery("SELECT v FROM Vehicle v WHERE v.model = :model", Vehicle.class);
+        query.setParameter("model", model);
+        Vehicle vehicle = query.getSingleResult();
         currentFleet.getVehicles().add(vehicle);
         return this;
     }

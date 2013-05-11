@@ -18,10 +18,18 @@ import com.lsy.vehicle.domain.Vehicle;
 
 @Entity
 @NamedQueries(
-	value = {
+	{
 	     @NamedQuery(name=Fleet.FIND_BY_COMPANY_NAME, query="SELECT f FROM Fleet f WHERE f.companyName = :companyName"),
 	     @NamedQuery(name=Fleet.FIND_ALL, query="SELECT f FROM Fleet f"),
-	     @NamedQuery(name=Fleet.FIND_ALL_COMPANY_NAMES, query="SELECT f.companyName FROM Fleet f")
+	     @NamedQuery(name=Fleet.FIND_ALL_COMPANY_NAMES, query="SELECT f.companyName FROM Fleet f"),
+	     @NamedQuery(name=Fleet.ENGINE_REPORT, query=
+	            " SELECT "+
+	     		" new com.lsy.vehicle.fleet.domain.EngineInfo(v.engine.type, COUNT(v)) " +
+	     		" FROM Fleet f INNER JOIN f.vehicles AS v" +
+	     		" WHERE f.companyName = :companyName" +
+	     		" GROUP BY v.engine.type" 
+	     		)
+	     
 	}
 )
 public class Fleet {
@@ -29,6 +37,7 @@ public class Fleet {
     public static final String FIND_BY_COMPANY_NAME = "Fleet.findByCompanyName";
     public static final String FIND_ALL = "Fleet.findAll";
     public static final String FIND_ALL_COMPANY_NAMES = "Fleet.findAllCompanyNames";
+    public static final String ENGINE_REPORT = "Fleet.EngineReport";
 	
 	@Id
 	@GeneratedValue
