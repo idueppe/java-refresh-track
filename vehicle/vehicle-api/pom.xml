@@ -14,5 +14,13 @@
 
 	<name>Vehicle Api Module</name>
 	<url>https://github.com/idueppe</url>
+	
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>
