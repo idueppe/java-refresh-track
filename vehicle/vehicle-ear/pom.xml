@@ -51,18 +51,18 @@
 						<ejbModule>
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-ejb</artifactId>
-							<!-- <bundleFileName>vehicle-ejb</bundleFileName> -->
+							<bundleFileName>vehicle-ejb.jar</bundleFileName>
 						</ejbModule>
 						<webModule>
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-web</artifactId>
-							<!-- <bundleFileName>vehicle-web</bundleFileName> -->
+							<bundleFileName>vehicle-web.war</bundleFileName>
 							<contextRoot>vehicle-web</contextRoot>
 						</webModule>
 						<jarModule>
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-api</artifactId>
-							<!-- <bundleFileName>vehicle-api</bundleFileName> -->
+							<bundleFileName>vehicle-api.jar</bundleFileName>
 						</jarModule>
 					</modules>
 				</configuration>
@@ -95,6 +95,9 @@
 							<execution>
 								<id>add-datasource</id>
 								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>add-resource</goal>
+								</goals>
 								<configuration>
 									<address>subsystem=datasources,data-source=VehicleDatasource</address>
 									<resource>
@@ -110,9 +113,6 @@
 										</properties>
 									</resource>
 								</configuration>
-								<goals>
-									<goal>add-resource</goal>
-								</goals>
 							</execution>
 						</executions>
 					</plugin>
