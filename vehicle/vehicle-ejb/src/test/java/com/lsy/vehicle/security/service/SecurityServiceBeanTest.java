@@ -1,6 +1,6 @@
 package com.lsy.vehicle.security.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.never;
@@ -34,7 +34,7 @@ public class SecurityServiceBeanTest {
     private FleetDao fleetDao;
     
     @Mock
-    private UserDao userDao;
+    private UserDao userDao; 
     
     @Test
     public void testGetFleetGroup() {

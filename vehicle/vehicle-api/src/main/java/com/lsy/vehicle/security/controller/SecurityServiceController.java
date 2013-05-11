@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lsy.vehicle.security.dto.FleetGroupDto;
 import com.lsy.vehicle.security.dto.UserDto;
+import com.lsy.vehicle.security.filter.UserFilterParameters;
 
 public interface SecurityServiceController {
     
@@ -17,8 +18,11 @@ public interface SecurityServiceController {
     
     public List<UserDto> findByFilter(String username, String email, String firstname, String surename, String role);
     
+    public List<UserDto> findByFilter(UserFilterParameters filter);
+
     public FleetGroupDto getGroupByCompanyName(String companyName);
     
     public void addUserToGroup(String companyName, String username);
+
     
 }

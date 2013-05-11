@@ -5,6 +5,7 @@ import java.util.List;
 import com.lsy.vehicle.security.domain.FleetGroup;
 import com.lsy.vehicle.security.domain.Role;
 import com.lsy.vehicle.security.domain.User;
+import com.lsy.vehicle.security.filter.UserFilterParameters;
 
 public interface SecurityService {
     
@@ -21,5 +22,7 @@ public interface SecurityService {
     public FleetGroup getGroupByCompanyName(String companyName);
     
     public void addUserToGroup(String companyName, String username);
+
+    public List<User> findByFilter(UserFilterParameters filter);
     
 }
