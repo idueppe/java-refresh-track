@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.lsy.vehicle.security.controller.SecurityServiceController;
 import com.lsy.vehicle.security.dto.UserDto;
 import com.lsy.vehicle.security.filter.UserFilterParameters;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class UserFilterManager{
     
     @EJB
