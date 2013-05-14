@@ -26,6 +26,8 @@ public class DBFixtureFleets {
     private List<Fleet> fleets = new ArrayList<>();
 
     private Fleet currentFleet;
+
+    private List resultList;
     
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
@@ -55,9 +57,11 @@ public class DBFixtureFleets {
     }
 
     public DBFixtureFleets removeAll() {
-        unlinkFleets();
-        em.createQuery("DELETE FROM Fleet").executeUpdate();
-        fleets.clear();
+//        unlinkFleets();
+        List<Fleet> fleets = em.createQuery("SELECT f FROM Fleet f", Fleet.class).getResultList();
+        for (Fleet fleet : fleets) {
+            em.remove(fleet);
+        }
         clear();
         return this;
     }
