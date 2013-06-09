@@ -27,8 +27,6 @@ public class DBFixtureFleets {
 
     private Fleet currentFleet;
 
-    private List resultList;
-    
     public void createDefaultDataInDatabase() {
     	LOG.info("Creating dummy data...");
         this.createFleet(COMPANY_NAME)
@@ -63,6 +61,7 @@ public class DBFixtureFleets {
             em.remove(fleet);
         }
         clear();
+        em.flush();
         return this;
     }
     
