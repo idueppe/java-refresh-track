@@ -91,7 +91,7 @@ public class FleetDaoTest {
     
     @Test
     public void testEngineReport1() throws Exception {
-        List report = dao.getEngineReport1(DBFixtureFleets.COMPANY_NAME);
+        List<?> report = dao.getEngineReport1(DBFixtureFleets.COMPANY_NAME);
         assertNotNull(report);
         assertFalse(report.isEmpty());
         System.out.println(Arrays.toString(report.toArray()));

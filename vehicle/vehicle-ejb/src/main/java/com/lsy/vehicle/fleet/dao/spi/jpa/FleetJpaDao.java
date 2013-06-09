@@ -72,14 +72,14 @@ public class FleetJpaDao implements FleetDao {
         return query.getResultList();
     }
 
-    public List getEngineReport1(String companyName) {
-        Query query = em.createNamedQuery("REPORT1");
+    public List<?> getEngineReport1(String companyName) {
+        Query query = em.createNamedQuery(Fleet.ENGINE_REPORT_V1);
         query.setParameter("companyName", companyName);
         return query.getResultList();
     }
     
     public List<EngineInfo> getEngineReport2(String companyName) {
-        TypedQuery<EngineInfo> query = em.createNamedQuery("REPORT2", EngineInfo.class);
+        TypedQuery<EngineInfo> query = em.createNamedQuery(Fleet.ENGINE_REPORT_V2, EngineInfo.class);
         query.setParameter("vehicles", findByCompanyName(companyName).getVehicles());
         return query.getResultList();
     }

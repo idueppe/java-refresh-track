@@ -24,23 +24,23 @@ import com.lsy.vehicle.domain.Vehicle;
 	     @NamedQuery(name=Fleet.FIND_ALL_COMPANY_NAMES, query="SELECT f.companyName FROM Fleet f"),
 	     @NamedQuery(name=Fleet.ENGINE_REPORT, query=
 	            " SELECT "+
-	     		" new com.lsy.vehicle.fleet.domain.EngineInfo(v.engine.type, COUNT(v)) " +
-	     		" FROM Fleet f INNER JOIN f.vehicles AS v" +
-	     		" WHERE f.companyName = :companyName" +
-	     		" GROUP BY v.engine.type" 
+	     		" new com.lsy.vehicle.fleet.domain.EngineInfo(v.engine.type, COUNT(v)) " + //
+	     		" FROM Fleet f LEFT JOIN f.vehicles AS v" + // 
+	     		" WHERE f.companyName = :companyName" + //
+	     		" GROUP BY v.engine.type" //
 	     		),
- 		@NamedQuery(name="REPORT1", query=
- 		" SELECT "+
- 		                " v.engine.type, COUNT(v) " +
- 		                " FROM Fleet f INNER JOIN f.vehicles AS v" +
- 		                " WHERE f.companyName = :companyName" +
- 		                " GROUP BY v.engine.type" 
- 		                ),
-	     @NamedQuery(name="REPORT2", query=
-	     " SELECT "+
-	                     " new com.lsy.vehicle.fleet.domain.EngineInfo(e.type, COUNT(v)) " +
-	                     " FROM Vehicle v, Engine e WHERE e = v.engine AND v in (:vehicles)  " +
-	                     " GROUP BY e.type" 
+ 		@NamedQuery(name=Fleet.ENGINE_REPORT_V1, query=
+ 		        " SELECT "+
+ 		        " v.engine.type, COUNT(v) " +
+ 		        " FROM Fleet f INNER JOIN f.vehicles AS v" +
+ 		        " WHERE f.companyName = :companyName" +
+ 		        " GROUP BY v.engine.type"
+ 		        ),
+	     @NamedQuery(name=Fleet.ENGINE_REPORT_V2, query=
+	             " SELECT "+
+	             " new com.lsy.vehicle.fleet.domain.EngineInfo(e.type, COUNT(v)) " +
+	              " FROM Vehicle v, Engine e WHERE e = v.engine AND v in (:vehicles)  " +
+	              " GROUP BY e.type" 
 	        )
 	     
 	}
@@ -51,6 +51,9 @@ public class Fleet {
     public static final String FIND_ALL = "Fleet.findAll";
     public static final String FIND_ALL_COMPANY_NAMES = "Fleet.findAllCompanyNames";
     public static final String ENGINE_REPORT = "Fleet.EngineReport";
+    
+    public static final String ENGINE_REPORT_V1 = "Fleet.EngineReport.V1";
+    public static final String ENGINE_REPORT_V2 = "Fleet.EngineReport.V2";
 	
 	@Id
 	@GeneratedValue
