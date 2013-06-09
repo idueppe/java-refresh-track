@@ -16,7 +16,7 @@ public class UserFilterParameters implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private EnumMap<UserColumn, ColumnEntry> columns = new EnumMap<>(UserColumn.class);
-    Map<String, ColumnEntry> stringColumns = new HashMap<>();
+    private Map<String, ColumnEntry> stringColumns = new HashMap<>();
     
     private List<UserColumn> sortOrder = new ArrayList<>();
     
@@ -114,6 +114,14 @@ public class UserFilterParameters implements Serializable {
         public UserColumn getColumn() {
             return column;
         }
+    }
+
+    public int getPage() {
+        return 0;
+    }
+
+    public int getPageSize() {
+        return 25;
     }
 
 }

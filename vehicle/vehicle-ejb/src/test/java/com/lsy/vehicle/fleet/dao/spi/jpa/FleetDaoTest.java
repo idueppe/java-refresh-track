@@ -88,4 +88,25 @@ public class FleetDaoTest {
         assertEquals(2L, report.get(1).getQuantity());
     }
     
+    
+    @Test
+    public void testEngineReport1() throws Exception {
+        List report = dao.getEngineReport1(DBFixtureFleets.COMPANY_NAME);
+        assertNotNull(report);
+        assertFalse(report.isEmpty());
+        System.out.println(Arrays.toString(report.toArray()));
+    }
+    
+    @Test
+    public void testEngineReport2() throws Exception {
+        List<EngineInfo> report = dao.getEngineReport2(DBFixtureFleets.COMPANY_NAME);
+        assertNotNull(report);
+        assertFalse(report.isEmpty());
+        System.out.println(Arrays.toString(report.toArray()));
+        assertEquals(EngineType.PETROL, report.get(0).getEngineType());
+        assertEquals(1L, report.get(0).getQuantity());
+        assertEquals(EngineType.DIESEL, report.get(1).getEngineType());
+        assertEquals(2L, report.get(1).getQuantity());
+    }
+    
 }

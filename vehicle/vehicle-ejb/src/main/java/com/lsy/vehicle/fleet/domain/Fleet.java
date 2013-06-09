@@ -18,7 +18,7 @@ import com.lsy.vehicle.domain.Vehicle;
 
 @Entity
 @NamedQueries(
-	{
+	{ 
 	     @NamedQuery(name=Fleet.FIND_BY_COMPANY_NAME, query="SELECT f FROM Fleet f WHERE f.companyName = :companyName"),
 	     @NamedQuery(name=Fleet.FIND_ALL, query="SELECT f FROM Fleet f"),
 	     @NamedQuery(name=Fleet.FIND_ALL_COMPANY_NAMES, query="SELECT f.companyName FROM Fleet f"),
@@ -28,7 +28,20 @@ import com.lsy.vehicle.domain.Vehicle;
 	     		" FROM Fleet f INNER JOIN f.vehicles AS v" +
 	     		" WHERE f.companyName = :companyName" +
 	     		" GROUP BY v.engine.type" 
-	     		)
+	     		),
+ 		@NamedQuery(name="REPORT1", query=
+ 		" SELECT "+
+ 		                " v.engine.type, COUNT(v) " +
+ 		                " FROM Fleet f INNER JOIN f.vehicles AS v" +
+ 		                " WHERE f.companyName = :companyName" +
+ 		                " GROUP BY v.engine.type" 
+ 		                ),
+	     @NamedQuery(name="REPORT2", query=
+	     " SELECT "+
+	                     " new com.lsy.vehicle.fleet.domain.EngineInfo(e.type, COUNT(v)) " +
+	                     " FROM Vehicle v, Engine e WHERE e = v.engine AND v in (:vehicles)  " +
+	                     " GROUP BY e.type" 
+	        )
 	     
 	}
 )

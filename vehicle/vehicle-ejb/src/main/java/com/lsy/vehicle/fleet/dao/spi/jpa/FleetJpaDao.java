@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.lsy.vehicle.fleet.dao.FleetDao;
@@ -68,6 +69,18 @@ public class FleetJpaDao implements FleetDao {
         TypedQuery<EngineInfo> query = em.createNamedQuery(Fleet.ENGINE_REPORT, EngineInfo.class);
         query.setParameter("companyName", companyName);
         
+        return query.getResultList();
+    }
+
+    public List getEngineReport1(String companyName) {
+        Query query = em.createNamedQuery("REPORT1");
+        query.setParameter("companyName", companyName);
+        return query.getResultList();
+    }
+    
+    public List<EngineInfo> getEngineReport2(String companyName) {
+        TypedQuery<EngineInfo> query = em.createNamedQuery("REPORT2", EngineInfo.class);
+        query.setParameter("vehicles", findByCompanyName(companyName).getVehicles());
         return query.getResultList();
     }
     

@@ -62,9 +62,12 @@
                     		<f:verbatim rendered="#{userFilterManager.filter.columns['EMAIL'].sortOrder == 'DESCENDING'}">
                     			<i class="icon-arrow-down"> </i>
                     		</f:verbatim>
-							<h:outputText value="#{userFilterManager.filter.columns['EMAIL'].sortPosition + 1}"
+						<h:outputText value="#{userFilterManager.filter.columns['EMAIL'].sortPosition + 1}"
                     			rendered="#{userFilterManager.filter.columns['EMAIL'].sortPosition gt -1}"
                     			styleClass="label"/>
+<!-- 						<f:verbatim rendered="#{userFilterManager.filter.columns['EMAIL'].sortPosition gt -1}"> -->
+<!-- 							#{userFilterManager.filter.columns['EMAIL'].sortPosition + 1} -->
+<!-- 						</f:verbatim> -->
                     	</h:commandLink>
                         <h:inputText id="emailFilter" value="#{userFilterManager.filter.columns['EMAIL'].filter}" >
                         	<f:ajax event="change" execute="emailFilter" render="usertable" />

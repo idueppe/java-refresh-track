@@ -161,6 +161,8 @@ public class UserDaoBean implements UserDao {
         }
         
         TypedQuery<User> query = em.createQuery(criteriaQuery);
+        query.setFirstResult(userFilter.getPage()*userFilter.getPageSize());
+        query.setMaxResults(userFilter.getPageSize());
         return query.getResultList();
     }
 
@@ -215,7 +217,7 @@ public class UserDaoBean implements UserDao {
             ColumnEntry entry = userFilter.getColumn(column);
             if (StringUtils.isNotBlank(entry.getFilter())) {
                 // ATTENTION: Convention enum names and column names are equal 
-                Expression<String> expression = user.get(column.toString().toLowerCase());
+                Expression<String> expression = user.get(column.columnName());
                 if (column == UserColumn.ROLE) {
                     predicates.add(builder.equal(expression, Role.valueOf(entry.getFilter())));
                 } else {
