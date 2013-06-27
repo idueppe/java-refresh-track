@@ -38,25 +38,31 @@ public class SecurityServiceBeanTest {
     
     @Test
     public void testGetFleetGroup() {
+        // given
         when(groupDao.findGroupByCompanyName(anyString())).thenReturn(null);
         when(userDao.findByUsername("username")).thenReturn(new User());
         
+        // when
         securityManager.addUserToGroup("companyName", "username");
         
+        // then
         verify(groupDao, times(1)).create(any(FleetGroup.class));
         verify(groupDao, times(1)).update(any(FleetGroup.class));
     }
     
     @Test
     public void testAddUserToGroup() {
+        // given
         FleetGroup group = new FleetGroup();
         User user = new User();
 
         when(groupDao.findGroupByCompanyName(anyString())).thenReturn(group);
         when(userDao.findByUsername("username")).thenReturn(user);
         
+        // when
         securityManager.addUserToGroup("companyName", "username");
         
+        // then
         verify(groupDao, never()).create(any(FleetGroup.class));
         verify(groupDao, times(1)).update(group);
         

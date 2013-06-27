@@ -21,6 +21,10 @@
 		</dependency>
 		<dependency>
 			<groupId>de.crowdcode.training</groupId>
+			<artifactId>vehicle-security-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.crowdcode.training</groupId>
 			<artifactId>vehicle-ejb</artifactId>
 			<type>ejb</type>
 		</dependency>
@@ -63,6 +67,11 @@
 							<groupId>de.crowdcode.training</groupId>
 							<artifactId>vehicle-api</artifactId>
 							<bundleFileName>vehicle-api.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>de.crowdcode.training</groupId>
+							<artifactId>vehicle-security-api</artifactId>
+							<bundleFileName>vehicle-security-api.jar</bundleFileName>
 						</jarModule>
 					</modules>
 				</configuration>

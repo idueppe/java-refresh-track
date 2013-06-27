@@ -12,10 +12,11 @@
 		<module>jboss-custom-client</module>
 		<module>vehicle-api</module>
 		<module>vehicle-ejb</module>
+		<module>vehicle-security-api</module>
 		<module>vehicle-ear</module>
 		<module>vehicle-client</module>
-    <module>vehicle-web</module>
-  </modules>
+    		<module>vehicle-web</module>
+  	</modules>
 
 	<prerequisites>
 		<maven>3.0.3</maven>
@@ -23,6 +24,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hibernate.version>4.1.0.Final</hibernate.version>
+		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencyManagement>
@@ -48,6 +51,12 @@
 				<version>${project.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>de.crowdcode.training</groupId>
+				<artifactId>vehicle-security-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<!-- Java EE Dependency -->
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
@@ -61,7 +70,7 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>4.1.0.Final</version>
+				<version>${hibernate.version}</version>
 				<scope>provided</scope>
 				<exclusions>
 					<exclusion>
@@ -75,7 +84,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.10</version>
+				<version>${junit.version}</version>
 				<type>jar</type>
 				<scope>test</scope>
 			</dependency>
