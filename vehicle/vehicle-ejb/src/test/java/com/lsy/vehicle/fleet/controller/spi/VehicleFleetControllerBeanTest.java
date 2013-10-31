@@ -107,6 +107,7 @@ public class VehicleFleetControllerBeanTest {
         public boolean matches(Object argument) {
             if (argument instanceof List)
             {
+                @SuppressWarnings("unchecked")
                 List<Vehicle> vehicles = (List<Vehicle>) argument;
                 return vehicles.get(0).getId() == expectedId;
             }
@@ -114,56 +115,6 @@ public class VehicleFleetControllerBeanTest {
         }
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
 }

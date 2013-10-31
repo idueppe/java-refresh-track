@@ -14,6 +14,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @NamedQueries(value = {
@@ -28,6 +32,8 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.CHAR)
 @DiscriminatorValue("M")
+@XmlType(name="ManufacturerType")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Manufacturer extends AbstractEntity {
     
     public static final String FIND_BY_NAME = "Manufacturer.findByName";
@@ -37,9 +43,11 @@ public class Manufacturer extends AbstractEntity {
     private String name;
 
     @OneToMany(mappedBy = "manufacturer", cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE })
+    @XmlTransient
     private List<Vehicle> vehicles = new ArrayList<Vehicle>();
     
     @OneToMany(mappedBy = "manufacturer", cascade = { CascadeType.ALL})
+    @XmlTransient
     private List<Engine> ownedEngines = new ArrayList<Engine>();
 
 
