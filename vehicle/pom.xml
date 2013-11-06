@@ -16,6 +16,7 @@
 		<module>vehicle-ear</module>
 		<module>vehicle-client</module>
     		<module>vehicle-web</module>
+		<module>vehicle-cdi</module>
   	</modules>
 
 	<prerequisites>
@@ -135,6 +136,10 @@
 		<repository>
 			<id>jboss</id>
 			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>jboss</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/thridparty-releases</url>
 		</repository>
 	</repositories>
 
