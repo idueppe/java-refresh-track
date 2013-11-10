@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ManufacturerWSBeanService" targetNamespace="http://ws.vehicle.lsy.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.vehicle.lsy.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.vehicle.lsy.com/" version="1.0" xmlns:tns="http://ws.vehicle.lsy.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="listAll" type="tns:listAll"/>
+<xs:element name="listAllDtos" type="tns:listAllDtos"/>
+<xs:element name="listAllDtosResponse" type="tns:listAllDtosResponse"/>
+<xs:element name="listAllResponse" type="tns:listAllResponse"/>
+<xs:element name="updateManufacturerName" type="tns:updateManufacturerName"/>
+<xs:element name="updateManufacturerNameResponse" type="tns:updateManufacturerNameResponse"/>
+<xs:complexType name="listAll">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="listAllResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ManufacturerType"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ManufacturerType">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="abstractEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listAllDtos">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="listAllDtosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:manufacturerDto"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="manufacturerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vehicles" nillable="true" type="tns:vehicleDto"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="vehicleDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="constructionDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="engine" type="tns:engineDto"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="manufacturerName" type="xs:string"/>
+      <xs:element minOccurs="0" name="modelName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="engineDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="engineId" type="xs:long"/>
+      <xs:element minOccurs="0" name="engineType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateManufacturerName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateManufacturerNameResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="updateManufacturerName">
+    <wsdl:part element="tns:updateManufacturerName" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listAllResponse">
+    <wsdl:part element="tns:listAllResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listAll">
+    <wsdl:part element="tns:listAll" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateManufacturerNameResponse">
+    <wsdl:part element="tns:updateManufacturerNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listAllDtosResponse">
+    <wsdl:part element="tns:listAllDtosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listAllDtos">
+    <wsdl:part element="tns:listAllDtos" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ManufacturerWSBean">
+    <wsdl:operation name="listAll">
+      <wsdl:input message="tns:listAll" name="listAll">
+    </wsdl:input>
+      <wsdl:output message="tns:listAllResponse" name="listAllResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listAllDtos">
+      <wsdl:input message="tns:listAllDtos" name="listAllDtos">
+    </wsdl:input>
+      <wsdl:output message="tns:listAllDtosResponse" name="listAllDtosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManufacturerName">
+      <wsdl:input message="tns:updateManufacturerName" name="updateManufacturerName">
+    </wsdl:input>
+      <wsdl:output message="tns:updateManufacturerNameResponse" name="updateManufacturerNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManufacturerWSBeanServiceSoapBinding" type="tns:ManufacturerWSBean">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listAll">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listAll">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listAllResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listAllDtos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listAllDtos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listAllDtosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManufacturerName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateManufacturerName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateManufacturerNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManufacturerWSBeanService">
+    <wsdl:port binding="tns:ManufacturerWSBeanServiceSoapBinding" name="ManufacturerWSBeanPort">
+      <soap:address location="http://localhost:8080/vehicle-ejb/ManufacturerWSBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

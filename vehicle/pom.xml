@@ -15,9 +15,10 @@
 		<module>vehicle-security-api</module>
 		<module>vehicle-ear</module>
 		<module>vehicle-client</module>
-    		<module>vehicle-web</module>
+		<module>vehicle-web</module>
+        <module>vehicle-ws-client</module>
 		<module>vehicle-cdi</module>
-  	</modules>
+	</modules>
 
 	<prerequisites>
 		<maven>3.0.3</maven>
@@ -43,7 +44,7 @@
 				<groupId>de.crowdcode.training</groupId>
 				<artifactId>vehicle-web</artifactId>
 				<version>${project.version}</version>
-                <type>war</type>
+				<type>war</type>
 			</dependency>
 
 			<dependency>
@@ -131,7 +132,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<repositories>
 		<repository>
 			<id>jboss</id>
