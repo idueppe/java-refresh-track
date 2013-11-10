@@ -135,11 +135,11 @@
 	<repositories>
 		<repository>
 			<id>jboss</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
 		</repository>
 		<repository>
-			<id>jboss</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/thridparty-releases</url>
+			<id>jboss-thrirdparty-releases</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
 		</repository>
 	</repositories>
 
