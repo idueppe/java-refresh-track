@@ -20,13 +20,13 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @Entity
-@NamedQueries(value = {
+@NamedQueries({
         @NamedQuery(
              name = Manufacturer.FIND_BY_NAME, 
              query = "SELECT m FROM Manufacturer m WHERE m.name = :name"),
         @NamedQuery(
              name = Manufacturer.FIND_WITH_ENGINETYPE, 
-             query = "SELECT DISTINCT m FROM Manufacturer AS m JOIN FETCH m.vehicles AS v WHERE v.engine.type IN (:engineType)")
+             query = "SELECT DISTINCT m FROM Manufacturer AS m JOIN m.vehicles AS v WHERE v.engine.type IN (:engineType)")
             
 })
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
