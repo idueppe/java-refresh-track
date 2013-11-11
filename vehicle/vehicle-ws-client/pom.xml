@@ -44,6 +44,10 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<!-- This plugin is only for ecliipse configured. -->
+				<!-- Currently there is no eclipse support for wsimport maven plugin -->
+				<!-- So it is ignored in eclipse build path. At least to have the generated source folder -->
+				<!-- configured in eclipse this plugin is configured  -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.8</version>
@@ -64,6 +68,41 @@
 			</plugin>
 
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.jvnet.jax-ws-commons
+										</groupId>
+										<artifactId>
+											jaxws-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.3,)
+										</versionRange>
+										<goals>
+											<goal>wsimport</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 
