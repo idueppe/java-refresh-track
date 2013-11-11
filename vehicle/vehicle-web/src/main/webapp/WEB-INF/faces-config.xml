@@ -13,7 +13,7 @@
 		<navigation-case>
 			<from-outcome>back_to_home</from-outcome>
 			<to-view-id>/views/home.xhtml</to-view-id>
-			<redirect>true</redirect>
+			<redirect/>
 		</navigation-case>   
    </navigation-rule>
 
