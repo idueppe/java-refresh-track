@@ -1,8 +1,17 @@
 package com.lsy.vehicle.log.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({

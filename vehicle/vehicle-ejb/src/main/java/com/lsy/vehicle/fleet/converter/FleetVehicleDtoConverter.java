@@ -1,12 +1,13 @@
 package com.lsy.vehicle.fleet.converter;
 
+import javax.ejb.Stateless;
+import javax.inject.Named;
+
 import com.lsy.commons.converter.AbstractDefaultConverter;
 import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.fleet.dto.FleetVehicleDto;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Named @Stateless
 public class FleetVehicleDtoConverter extends AbstractDefaultConverter<Vehicle, FleetVehicleDto> {
 
 	@Override

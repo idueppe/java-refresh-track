@@ -1,57 +1,67 @@
 package com.lsy.vehicle.security.web.managers;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.lsy.vehicle.security.controller.SecurityServiceController;
 import com.lsy.vehicle.security.dto.UserDto;
 import com.lsy.vehicle.security.filter.UserFilterParameters;
 
-@ManagedBean
-@ViewScoped
-public class UserFilterManager{
-    
-    @EJB
-    private SecurityServiceController securityController;
-    
-    private UserDto selectedUser = new UserDto();
-    
-    private UserFilterParameters filter = new UserFilterParameters();
-    
-    public void resetFilter() {
-        filter = new UserFilterParameters();
-    }
-    
-    public List<UserDto> getAllUsers() {
-        System.out.println("reload list...");
-        return securityController.findByFilter(filter);
-    }
-    
-    public UserDto getSelectedUser() {
-        return selectedUser;
-    }
-    
-    public String startAddingNewUser() {
-        selectedUser = new UserDto();
-        return "/views/secure/adduser";
-    }
+@Named
+@ConversationScoped
+public class UserFilterManager implements Serializable
+{
 
-    public String addUser() {
-        securityController.registerUser(selectedUser);
-        return "/views/secure/userfilter";
-    }
-    
-    public String cancelAdding() {
-        selectedUser = null;
-        return "/views/secure/userfilter";
-    }
+	private static final long serialVersionUID = 1L;
 
-    public UserFilterParameters getFilter() {
-        return filter;
-    }
+	@Inject
+	private SecurityServiceController securityController;
+
+	private UserDto selectedUser = new UserDto();
+
+	private UserFilterParameters filter = new UserFilterParameters();
+
+	public void resetFilter()
+	{
+		filter = new UserFilterParameters();
+	}
+
+	public List<UserDto> getAllUsers()
+	{
+		System.out.println("reload list...");
+		return securityController.findByFilter(filter);
+	}
+
+	public UserDto getSelectedUser()
+	{
+		return selectedUser;
+	}
+
+	public String startAddingNewUser()
+	{
+		selectedUser = new UserDto();
+		return "/views/secure/adduser";
+	}
+
+	public String addUser()
+	{
+		securityController.registerUser(selectedUser);
+		return "/views/secure/userfilter";
+	}
+
+	public String cancelAdding()
+	{
+		selectedUser = null;
+		return "/views/secure/userfilter";
+	}
+
+	public UserFilterParameters getFilter()
+	{
+		return filter;
+	}
 
 }
-

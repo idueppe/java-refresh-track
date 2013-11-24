@@ -2,9 +2,11 @@ package com.lsy.vehicle.security.service.spi;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.annotation.PostConstruct;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.lsy.vehicle.fleet.dao.FleetDao;
 import com.lsy.vehicle.fleet.domain.Fleet;
@@ -16,76 +18,92 @@ import com.lsy.vehicle.security.domain.User;
 import com.lsy.vehicle.security.filter.UserFilterParameters;
 import com.lsy.vehicle.security.service.SecurityService;
 
+@Named
 @Stateless
 @Local(SecurityService.class)
-public class SecurityServiceBean implements SecurityService {
+public class SecurityServiceBean implements SecurityService
+{
 
-    @EJB
-    private FleetGroupDao groupDao;
-    
-    @EJB
-    private FleetDao fleetDao;
-    
-    @EJB
-    private UserDao userDao;
+	@Inject
+	private FleetGroupDao groupDao;
 
-    @Override
-    public void registerUser(User user) {
-        userDao.create(user);
-    }
+	@Inject
+	private FleetDao fleetDao;
 
-    @Override
-    public List<User> findAllUser() {
-        return userDao.findAll();
-    }
+	@Inject
+	private UserDao userDao;
 
-    @Override
-    public List<User> findAllCustomer() {
-        return userDao.findAllOfRole(Role.CUSTOMER);
-    }
+	@Override
+	public void registerUser(User user)
+	{
+		userDao.create(user);
+	}
 
-    @Override
-    public FleetGroup getGroupByCompanyName(String companyName) {
-        FleetGroup group = groupDao.findGroupByCompanyName(companyName);
-        
-        if (group == null) {
-            group = createFleetGroupForCompany(companyName);
-        }
-        
-        return group;
-    }
+	@PostConstruct
+	public void postConstruct()
+	{
+		System.out.println("POSTCONSTRUCTION <--------------- NOW");
+	}
 
-    private FleetGroup createFleetGroupForCompany(String companyName) {
-        FleetGroup group = new FleetGroup();
-        Fleet fleet = fleetDao.findByCompanyName(companyName);
-        group.setFleet(fleet);
-        groupDao.create(group);
-        return group;
-    }
+	@Override
+	public List<User> findAllUser()
+	{
+		return userDao.findAll();
+	}
 
-    @Override
-    public void addUserToGroup(String companyName, String username) {
-        FleetGroup group = getGroupByCompanyName(companyName);
-        User user = userDao.findByUsername(username);
-        group.getUsers().add(user);
-        groupDao.update(group);
-    }
+	@Override
+	public List<User> findAllCustomer()
+	{
+		return userDao.findAllOfRole(Role.CUSTOMER);
+	}
 
-    @Override
-    public List<User> findAllCustomerNotMemberOf(String companyName) {
-        return userDao.findAllCustomersNotMemberOfCompany(companyName);
-    }
+	@Override
+	public FleetGroup getGroupByCompanyName(String companyName)
+	{
+		FleetGroup group = groupDao.findGroupByCompanyName(companyName);
 
-    @Override
-    public List<User> findByFilter(String username, String email, String firstname,
-                    String surename, Role role) {
-        return userDao.findByFilter(username, email, firstname, surename, role);
-    }
-    
-    @Override
-    public List<User> findByFilter(UserFilterParameters filter) {
-        return userDao.findByFilter(filter);
-    }
-    
+		if (group == null)
+		{
+			group = createFleetGroupForCompany(companyName);
+		}
+
+		return group;
+	}
+
+	private FleetGroup createFleetGroupForCompany(String companyName)
+	{
+		FleetGroup group = new FleetGroup();
+		Fleet fleet = fleetDao.findByCompanyName(companyName);
+		group.setFleet(fleet);
+		groupDao.create(group);
+		return group;
+	}
+
+	@Override
+	public void addUserToGroup(String companyName, String username)
+	{
+		FleetGroup group = getGroupByCompanyName(companyName);
+		User user = userDao.findByUsername(username);
+		group.getUsers().add(user);
+		groupDao.update(group);
+	}
+
+	@Override
+	public List<User> findAllCustomerNotMemberOf(String companyName)
+	{
+		return userDao.findAllCustomersNotMemberOfCompany(companyName);
+	}
+
+	@Override
+	public List<User> findByFilter(String username, String email, String firstname, String surename, Role role)
+	{
+		return userDao.findByFilter(username, email, firstname, surename, role);
+	}
+
+	@Override
+	public List<User> findByFilter(UserFilterParameters filter)
+	{
+		return userDao.findByFilter(filter);
+	}
 
 }

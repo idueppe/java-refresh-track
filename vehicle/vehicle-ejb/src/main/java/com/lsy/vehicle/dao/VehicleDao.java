@@ -1,9 +1,9 @@
 package com.lsy.vehicle.dao;
 
+import java.util.List;
+
 import com.lsy.vehicle.domain.EngineType;
 import com.lsy.vehicle.domain.Vehicle;
-
-import java.util.List;
 
 public interface VehicleDao extends EntityDao<Vehicle> {
 
