@@ -1,7 +1,7 @@
 package de.crowdcode.training.jbossas;
 
-import com.lsy.vehicle.log.service.ApplicationLogService;
-import com.lsy.vehicle.service.ConnectionException;
+import de.crowdcode.vehicle.log.service.ApplicationLogService;
+import de.crowdcode.vehicle.service.ConnectionException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -32,7 +32,7 @@ public class EjbServiceLocator {
 	@SuppressWarnings("unchecked")
 	public static <T> T lookupService(String appName, String moduleName, String distinctName, String beanName, Class<T> viewClass) throws NamingException, ConnectionException {
 		final Context context = new InitialContext(loadEjbClientProperties());
-		return (T) context.lookup("vehicle-ear/vehicle-ejb/ApplicationLogServiceBean!com.lsy.vehicle.service.ApplicationLogService");
+		return (T) context.lookup("vehicle-ear/vehicle-ejb/ApplicationLogServiceBean!de.crowdcode.vehicle.service.ApplicationLogService");
 //		return (T) context.lookup("ejb:/"+appName+"/"+moduleName+"/"+beanName+"!"+viewClass.getName());
 	}
 	

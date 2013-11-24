@@ -1,9 +1,9 @@
-package com.lsy.vehicle.service;
+package de.crowdcode.vehicle.service;
 
 import org.jboss.ejb.client.*;
 import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
 
-import com.lsy.vehicle.log.service.ApplicationLogService;
+import de.crowdcode.vehicle.log.service.ApplicationLogService;
 
 import javax.naming.Context;
 import javax.naming.NamingException;

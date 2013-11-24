@@ -5,16 +5,16 @@
 
 	<persistence-unit name="vehicle-foundation">
 		<jta-data-source>java:/VehicleFoundationDS</jta-data-source>
-		<class>com.lsy.vehicle.domain.Engine</class>
-		<class>com.lsy.vehicle.domain.EngineType</class>
-		<class>com.lsy.vehicle.domain.Manufacturer</class>
-		<class>com.lsy.vehicle.domain.Vendor</class>
-		<class>com.lsy.vehicle.domain.Message</class>
-		<class>com.lsy.vehicle.domain.Vehicle</class>
-		<class>com.lsy.vehicle.fleet.domain.Fleet</class>
-		<class>com.lsy.vehicle.log.domain.ApplicationLog</class>
-		<class>com.lsy.vehicle.security.domain.User</class>
-		<class>com.lsy.vehicle.security.domain.FleetGroup</class>
+		<class>de.crowdcode.vehicle.domain.Engine</class>
+		<class>de.crowdcode.vehicle.domain.EngineType</class>
+		<class>de.crowdcode.vehicle.domain.Manufacturer</class>
+		<class>de.crowdcode.vehicle.domain.Vendor</class>
+		<class>de.crowdcode.vehicle.domain.Message</class>
+		<class>de.crowdcode.vehicle.domain.Vehicle</class>
+		<class>de.crowdcode.vehicle.fleet.domain.Fleet</class>
+		<class>de.crowdcode.vehicle.log.domain.ApplicationLog</class>
+		<class>de.crowdcode.vehicle.security.domain.User</class>
+		<class>de.crowdcode.vehicle.security.domain.FleetGroup</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="false" />

@@ -1,7 +1,7 @@
-package com.lsy.vehicle.service;
+package de.crowdcode.vehicle.service;
 
-import com.lsy.vehicle.log.dto.LogEntry;
-import com.lsy.vehicle.log.service.ApplicationLogService;
+import de.crowdcode.vehicle.log.dto.LogEntry;
+import de.crowdcode.vehicle.log.service.ApplicationLogService;
 
 import de.crowdcode.training.jbossas.EjbServiceLocator;
 import org.junit.Test;

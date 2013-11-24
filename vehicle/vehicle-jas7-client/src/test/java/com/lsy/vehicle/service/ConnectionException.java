@@ -1,4 +1,4 @@
-package com.lsy.vehicle.service;
+package de.crowdcode.vehicle.service;
 
 public class ConnectionException extends Exception {
 
