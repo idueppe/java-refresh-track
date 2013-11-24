@@ -38,6 +38,7 @@
 		<dependency>
 			<groupId>de.crowdcode.training</groupId>
 			<artifactId>vehicle-security-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
