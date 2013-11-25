@@ -16,12 +16,16 @@ import com.lsy.vehicle.domain.Vehicle;
 import com.lsy.vehicle.service.VehicleObserverRegistration;
 import com.lsy.vehicle.service.VehicleService;
 
+import de.crowdcode.cdi.performance.Monitored;
+
 @Named
 @Stateless
 @Local(VehicleService.class)
 public class VehicleServiceBean implements VehicleService
 {
 
+	private static final Logger log = Logger.getLogger(VehicleServiceBean.class);
+	
 	@Inject
 	private VehicleDao vehicleDao;
 
@@ -38,6 +42,7 @@ public class VehicleServiceBean implements VehicleService
 	}
 
 	@Override
+	@Monitored
 	public List<Vehicle> getVehicleByManufacture(String name)
 	{
 		return vehicleDao.findVehicleByManufacturer(name);

@@ -4,6 +4,9 @@
  <decorators>
   <class>com.lsy.vehicle.dao.spi.jpa.VehicleJpaDaoDecorator</class>
  </decorators>
+ <interceptors>
+  <class>de.crowdcode.cdi.performance.PerformanceMonitor</class>
+ </interceptors>
  <!-- 	<alternatives> 
  		<class>com.lsy.vehicle.dao.spi.jpa.NullVehicleDao</class> 
  	</alternatives> -->
