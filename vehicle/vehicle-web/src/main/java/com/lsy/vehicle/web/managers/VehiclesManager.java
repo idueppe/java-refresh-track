@@ -53,7 +53,7 @@ public class VehiclesManager implements Serializable
 		return "/views/vehicles";
 	}
 
-	public String delete(VehicleDto vehicleDto) throws VehicleNotFoundException
+	public String delete(VehicleDto vehicleDto)
 	{
 		LOG.info("----------- DELETING VEHICLE...");
 		vehicleController.deleteVehicle(vehicleDto);
@@ -62,7 +62,7 @@ public class VehiclesManager implements Serializable
 		return "/views/vehicles";
 	}
 
-	public String addVehicle() throws VehicleNotFoundException
+	public String addVehicle()
 	{
 
 		vehicle.setManufacturerName(manufacturer.getName());

@@ -8,6 +8,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 import com.lsy.vehicle.dao.ManufacturerDao;
 import com.lsy.vehicle.dao.VehicleDao;
 import com.lsy.vehicle.domain.EngineType;
@@ -24,8 +26,8 @@ import de.crowdcode.cdi.performance.Monitored;
 public class VehicleServiceBean implements VehicleService
 {
 
-	private static final Logger log = Logger.getLogger(VehicleServiceBean.class);
-	
+	private static final Logger LOG = Logger.getLogger(VehicleServiceBean.class);
+
 	@Inject
 	private VehicleDao vehicleDao;
 
