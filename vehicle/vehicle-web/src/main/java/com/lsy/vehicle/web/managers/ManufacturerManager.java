@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
@@ -35,6 +35,7 @@ public class ManufacturerManager implements Serializable
 	private VehiclesManager vehiclesManager;
 
 	private ManufacturerDto selectedManufacturer;
+
 	private String uniqueManufacturerName;
 
 	public List<ManufacturerDto> getAllManufacturers()
@@ -73,8 +74,7 @@ public class ManufacturerManager implements Serializable
 	private boolean doManufacturerNameExistis(String manufacturerName)
 	{
 		ManufacturerDto found = manufacturerController.byName(manufacturerName);
-		// TODO mach lesbar mach richtig!
-		if (found != null && found.getId() != null)
+		if (hasManufacturerDtoAnId(found))
 		{
 			return !found.getId().equals(selectedManufacturer.getId());
 		} else
@@ -131,6 +131,11 @@ public class ManufacturerManager implements Serializable
 
 	public boolean isEditing()
 	{
-		return (selectedManufacturer.getId() != null);
+		return hasManufacturerDtoAnId(selectedManufacturer);
+	}
+
+	private boolean hasManufacturerDtoAnId(ManufacturerDto found)
+	{
+		return found != null && found.getId() != null;
 	}
 }
