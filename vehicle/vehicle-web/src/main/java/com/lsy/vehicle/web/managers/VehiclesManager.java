@@ -53,7 +53,7 @@ public class VehiclesManager implements Serializable
 		return "/views/vehicles";
 	}
 
-	public String delete(VehicleDto vehicleDto)
+	public String delete(VehicleDto vehicleDto) throws VehicleNotFoundException
 	{
 		LOG.info("----------- DELETING VEHICLE...");
 		vehicleController.deleteVehicle(vehicleDto);
@@ -62,7 +62,7 @@ public class VehiclesManager implements Serializable
 		return "/views/vehicles";
 	}
 
-	public String addVehicle()
+	public String addVehicle() throws VehicleNotFoundException
 	{
 
 		vehicle.setManufacturerName(manufacturer.getName());
@@ -72,8 +72,8 @@ public class VehiclesManager implements Serializable
 		vehicleController.saveOrUpdateVehicle(vehicle);
 
 		FacesMessage msg = new FacesMessage();
-		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-		msg.setSummary("Diese Funktion ist noch nicht implementiert.");
+		msg.setSeverity(FacesMessage.SEVERITY_INFO);
+		msg.setSummary("Fahrzeug wurde aktuallisiert.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		return "/views/vehicles";
 	}
